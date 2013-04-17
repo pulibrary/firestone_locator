@@ -18,3 +18,11 @@ app/config/parameters.yml
 .project
 .git/*
 .buildpath
+*.DS_Store
+includes/db_config.php
+.project
+.buildpath
+.settings/*
+images/stage
+images/live
+
