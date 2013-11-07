@@ -31,14 +31,14 @@ div.content { clear:both; padding-left: 20px}
 
 th {min-width: 100px;}
 
-.icon-warning-sign {
+.fa-warning {
 	color: #FFFF00;
 	background-color: #000000;
 }
-.icon-trash {
+.fa-trash-o {
 	color: #FF0000;
 }
-.icon-check {
+.fa-check {
 	color: #009900;
 }
 
@@ -48,9 +48,29 @@ input[type=text] {
 .code_table th.code {
 	width: 80px;
 }
-.code_table .icon-edit {
+.code_table .fa-edit {
 	text-align: right;
 }
 .floor_table {
 	max-width: 1000px;
+}
+
+
+#footer {
+	width: 50%;
+	margin: 1em auto 0 auto;
+}
+
+.message-icon {
+	height: 64px;
+	width: 64px;
+	font-size: 2em;
+	float: left;
+	margin-left: -30px;
+}
+.message-icon i {
+	padding-left: 20px;
+}
+.message {
+	width: 100%;
 }
