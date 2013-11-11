@@ -27,12 +27,6 @@
 </head>
 <body>
 
-<?php 
-
-	page_header();
-?>
-
-
 <div class="content">
 <h2>Set End Points</h2>
 <?php
@@ -100,6 +94,5 @@
 		
 ?>
 </div>
-<?php page_footer(); ?>
 </body>
 </html>
