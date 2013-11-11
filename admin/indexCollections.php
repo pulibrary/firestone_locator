@@ -18,13 +18,13 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "InsertCallNum")) {
-	if (!isset($_POST["id_cn"])) {
+	if (isset($_POST["id_cn"])) {
 		$selectSQL = sprintf("SELECT * FROM lctr_Collections_cn WHERE id_cn=%s",
 				GetSQLValueString($_POST["id_cn"], "int"));
 	} else {
 		$selectSQL = "SELECT * FROM lctr_Collections_cn ORDER BY date_cn DESC LIMIT 0,1";
 	}
-	$insertSQL = sprintf("REPLACE INTO lctr_Collections_cn (id_cn, left_cn, LocationDisplayName_cn, BuildingCode_cn, FloorDB_cn, LocationMap_cn, Image_cn, message_cn) VALUES (%d, %s, %s, %s, %s, %s, %s, %s)",
+	$insertSQL = sprintf("REPLACE INTO lctr_Collections_cn (id_cn, left_cn, LocationDisplayName_cn, BuildingCode_cn, FloorDB_cn, LocationMap_cn, Image_cn, message_cn, x_point_cn, y_point_cn, date_cn) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW())",
 			GetSQLValueString($_POST['id_cn'], "int"),
 			GetSQLValueString($_POST['code'], "text"),
 			GetSQLValueString($_POST['location_display'], "text"),
@@ -32,9 +32,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "InsertCallNum")) {
 			GetSQLValueString($_POST['floordb'], "text"),
 			GetSQLValueString($_POST['location'], "text"),
 			GetSQLValueString($_POST['image'], "text"),
-			GetSQLValueString($_POST['message'], "text"));
-
-	
+			GetSQLValueString($_POST['message'], "text"),
+			GetSQLValueString($_POST['x_point_cn'], "int"),
+			GetSQLValueString($_POST['y_point_cn'], "int"));
 	if ($dbconnects["stage"]->query($insertSQL))  {
 		if ($subResult = $dbconnects["stage"]->query($selectSQL)) {
 			$subRecord = $subResult->fetch_assoc();
@@ -49,7 +49,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "InsertCallNum")) {
 				$success .= "<strong>Image File:</strong> ".$subRecord["Image_cn"]."<br/>\n";
 				$success .= "<strong>Floor:</strong> ".$subRecord["FloorDB_cn"]."<br/>\n";
 				$success .= "<strong>Message:</strong> ".$subRecord["message_cn"]."<br/>\n";
-				
+				$success .= "</blockquote>\n";
 				$success .= "</div>\n";
 			
 		} else {
@@ -227,6 +227,10 @@ $(document).ready(function() {
 				<td>
 					<div align="center" class="input">
 					<input type="hidden" name="site" id="site" value="lctr_Collections_cn" />
+					<input name="x_point_cn" type="hidden" id="x_point_cn"
+					value="<?php if(isset($_GET["h"])) echo $_GET['h']; ?>" >
+					<input name="y_point_cn" type="hidden" id="y_point_cn"
+					value="<?php if(isset($_GET["i"])) echo $_GET['i']; ?>" size="35">
 						<input name="Submit" type="submit"
 							onClick="MM_validateForm('location','','R');return document.MM_returnValue"
 							value="Submit" />
@@ -252,7 +256,8 @@ $(document).ready(function() {
 		echo "&e=" . $row_rsAdminCallNum['LocationMap_cn'];
 		echo "&f=" . $row_rsAdminCallNum['Image_cn'];
 		echo "&g=" . $row_rsAdminCallNum['message_cn'];
-		
+		echo "&h=" . $row_rsAdminCallNum['x_point_cn'];
+		echo "&i=" . $row_rsAdminCallNum['y_point_cn'];
 		?>"><i class="fa fa-edit" title="Update Entry"> </i></a> 
 				<a href="deleteCN.php?id_cn=<?php echo $row_rsAdminCallNum['id_cn']; ?>&amp;order=<?php echo $order;?>&amp;site=lctr_Collections_cn&amp;return=collections">
 				<i class="fa fa-trash-o" title="Delete Entry"> </i></a></td>
