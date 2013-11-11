@@ -36,11 +36,22 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "InsertCallNum")) {
 
 	
 	if ($dbconnects["stage"]->query($insertSQL))  {
-		if ($reqResult = $dbconnects["stage"]->query($selectSQL)) {
-			$reqRecord = $reqResult->fetch_assoc();
-			$success = "<div class='response'><strong>Code:</strong> ".$reqRecord["left_cn"]."<br/>\n";
-			$success .= "<strong>Location Display:</strong> ".$reqRecord["LocationDisplayName_cn"]."<br/>\n";
-			$success .= "</div>\n";
+		if ($subResult = $dbconnects["stage"]->query($selectSQL)) {
+			$subRecord = $subResult->fetch_assoc();
+				$success = "<div class='response'>\n";
+				
+				$success .= "<strong>Location Name:</strong>".$subRecord["LocationDisplayName_cn"]."<br/>\n";
+				
+				$success .= "<strong>Range Added:</strong><br/>\n";
+				$success .= "<blockquote><strong>Left CN:</strong> ".$subRecord["left_cn"]."<br/>\n";
+				$success .= "<strong>Building:</strong> ".$subRecord["BuildingCode_cn"]."<br/>\n";
+				$success .= "<strong>Location:</strong> ".$subRecord["LocationMap_cn"]."<br/>\n";
+				$success .= "<strong>Image File:</strong> ".$subRecord["Image_cn"]."<br/>\n";
+				$success .= "<strong>Floor:</strong> ".$subRecord["FloorDB_cn"]."<br/>\n";
+				$success .= "<strong>Message:</strong> ".$subRecord["message_cn"]."<br/>\n";
+				
+				$success .= "</div>\n";
+			
 		} else {
 			$error = $dbconnects["stage"]->error;
 		}
