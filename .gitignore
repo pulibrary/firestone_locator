@@ -27,3 +27,14 @@ images/stage
 images/live
 
 sql-files
+css/Font-Awesome/less
+css/Font-Awesome/scss
+css/Font-Awesome/src
+css/Font-Awesome/_config.yml
+css/Font-Awesome/component.json
+css/Font-Awesome/composer.json
+css/Font-Awesome/CONTRIBUTING.md
+css/Font-Awesome/Gemfile
+css/Font-Awesome/Gemfile.lock
+css/Font-Awesome/package.json
+css/Font-Awesome/README.md
