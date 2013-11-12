@@ -74,3 +74,15 @@ input[type=text] {
 .message {
 	width: 100%;
 }
+h2 {
+	font-size: 1.5em;
+	margin: 2em 0 1em 0;
+
+}
+h3 {
+	font-size: 1.3em;
+	margin: 1em 0 1em 0;
+}
+div.indent {
+	margin-left: 2em;
+}
