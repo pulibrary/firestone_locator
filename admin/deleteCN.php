@@ -43,7 +43,7 @@ if (
 				$success .= "<strong>Image File:</strong> ".$reqRecord["Image_cn"]."<br/>\n";
 				$success .= "<strong>Floor:</strong> ".$reqRecord["FloorDB_cn"]."<br/>\n";
 				$success .= "<strong>Message:</strong> ".$reqRecord["message_cn"]."<br/>\n";
-				
+				$success .= "</blockquote>\n";
 				$success .= "</div>\n";
 				
 			} else if ($site=="lctr_Coordinates_cn") {
@@ -55,7 +55,6 @@ if (
 			} else if ($site=="lctr_Oversize_cn"||$site=="lctr_Octavos_cn") {
 				$success = "<div class='response'>\n";
 				$success .= "<strong>Location Name:</strong>".$reqRecord["LocationDisplayName_cn"]."<br/>\n";
-				
 				$success .= "<strong>Range Deleted:</strong><br/>\n";
 				$success .= "<blockquote><strong>Left CN:</strong> ".$reqRecord["left_cn"]."<br/>\n";
 				$success .= "<strong>Right CN:</strong> ".$reqRecord["right_cn"]."<br/></blockquote>\n";
@@ -64,8 +63,12 @@ if (
 				$success .= "<strong>Image File:</strong> ".$reqRecord["Image_cn"]."<br/>\n";
 				$success .= "<strong>Floor:</strong> ".$reqRecord["FloorDB_cn"]."<br/>\n";
 				$success .= "<strong>Message:</strong> ".$reqRecord["message_cn"]."<br/>\n";
+				$success .= "</blockquote>\n";
 
-				
+				$success .= "</div>\n";
+			} else if ($site=="lctr_External_cn") {
+				$success = "<div class='response'><strong>Code:</strong> ".$reqRecord['LocationDisplayName_cn']."<br/>\n";
+				$success .= "<strong>Message Display:</strong> ".$reqRecord['message_cn']."<br/>\n";
 				$success .= "</div>\n";
 			}
 		}
@@ -107,6 +110,12 @@ if (
 			echo "<p><a href='indexDBdesign.php'>Return to Floor Plan Design</a></p>\n";
 		} else if (isset($site)&&$site=="lctr_Collections_cn") {
 			echo "<p><a href='indexCollections.php'>Return to Designated Locations</a></p>\n";
+		} else if (isset($site)&&$site=="lctr_Octavos_cn") {
+			echo "<p><a href='indexOctavos.php'>Return to Octavos Locations</a></p>\n";
+		} else if (isset($site)&&$site=="lctr_Oversize_cn") {
+			echo "<p><a href='indexOversize.php'>Return to Oversize Locations</a></p>\n";
+		} else if (isset($site)&&$site=="lctr_External_cn") {
+			echo "<p><a href='indexExternal.php'>Return to External Locations</a></p>\n";
 		}
 	?>	
 	</div>

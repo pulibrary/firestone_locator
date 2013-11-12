@@ -191,7 +191,7 @@ if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
 					echo "&c=" . $row_rsAdminCallNum['message_cn'];
 				?>"> <i class="fa fa-edit" title="Update Entry"> </i>
 				</a> <a
-					href="Scripts/deleteCN.php?id_cn=<?php echo $row_rsAdminCallNum['id_cn']; ?>&amp;order=<?php echo $order; ?>&amp;site=lctr_External_cn&amp;return=../indexExternal.php">
+					href="deleteCN.php?id_cn=<?php echo $row_rsAdminCallNum['id_cn']; ?>&amp;order=<?php echo $order; ?>&amp;site=lctr_External_cn&amp;return=../indexExternal.php">
 						<i class="fa fa-trash-o" title="Delete Entry"> </i>
 				</a>
 				</td>

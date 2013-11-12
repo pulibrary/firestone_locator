@@ -18,7 +18,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "InsertCallNum")) {
-	if (isset($_POST["id_cn"])) {
+	if (isset($_POST["id_cn"])&&$_POST["id_cn"]!="") {
 		$selectSQL = sprintf("SELECT * FROM lctr_Collections_cn WHERE id_cn=%s",
 				GetSQLValueString($_POST["id_cn"], "int"));
 	} else {
@@ -38,19 +38,18 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "InsertCallNum")) {
 	if ($dbconnects["stage"]->query($insertSQL))  {
 		if ($subResult = $dbconnects["stage"]->query($selectSQL)) {
 			$subRecord = $subResult->fetch_assoc();
-				$success = "<div class='response'>\n";
-				
-				$success .= "<strong>Location Name:</strong>".$subRecord["LocationDisplayName_cn"]."<br/>\n";
-				
-				$success .= "<strong>Range Added:</strong><br/>\n";
-				$success .= "<blockquote><strong>Left CN:</strong> ".$subRecord["left_cn"]."<br/>\n";
-				$success .= "<strong>Building:</strong> ".$subRecord["BuildingCode_cn"]."<br/>\n";
-				$success .= "<strong>Location:</strong> ".$subRecord["LocationMap_cn"]."<br/>\n";
-				$success .= "<strong>Image File:</strong> ".$subRecord["Image_cn"]."<br/>\n";
-				$success .= "<strong>Floor:</strong> ".$subRecord["FloorDB_cn"]."<br/>\n";
-				$success .= "<strong>Message:</strong> ".$subRecord["message_cn"]."<br/>\n";
-				$success .= "</blockquote>\n";
-				$success .= "</div>\n";
+			$success = "<div class='response'>\n";	
+			$success .= "<strong>Location Name:</strong>".$subRecord["LocationDisplayName_cn"]."<br/>\n";	
+			$success .= "<strong>Range Added:</strong><br/>\n";
+			$success .= "<blockquote><strong>Left CN:</strong> ".$subRecord["left_cn"]."<br/>\n";
+			$success .= "<strong>Right CN:</strong> ".$subRecord["right_cn"]."<br/>\n";
+			$success .= "</blockquote>\n";
+			$success .= "<strong>Building:</strong> ".$subRecord["BuildingCode_cn"]."<br/>\n";
+			$success .= "<strong>Location:</strong> ".$subRecord["LocationMap_cn"]."<br/>\n";
+			$success .= "<strong>Image File:</strong> ".$subRecord["Image_cn"]."<br/>\n";
+			$success .= "<strong>Floor:</strong> ".$subRecord["FloorDB_cn"]."<br/>\n";
+			$success .= "<strong>Message:</strong> ".$subRecord["message_cn"]."<br/>\n";
+			$success .= "</div>\n";
 			
 		} else {
 			$error = $dbconnects["stage"]->error;
@@ -228,9 +227,9 @@ $(document).ready(function() {
 					<div align="center" class="input">
 					<input type="hidden" name="site" id="site" value="lctr_Collections_cn" />
 					<input name="x_point_cn" type="hidden" id="x_point_cn"
-					value="<?php if(isset($_GET["h"])) echo $_GET['h']; ?>" >
+					value="<?php if(isset($_GET["h"])) echo $_GET['h']; else echo "0"; ?>" >
 					<input name="y_point_cn" type="hidden" id="y_point_cn"
-					value="<?php if(isset($_GET["i"])) echo $_GET['i']; ?>" size="35">
+					value="<?php if(isset($_GET["i"])) echo $_GET['i']; else echo "0"; ?>" size="35">
 						<input name="Submit" type="submit"
 							onClick="MM_validateForm('location','','R');return document.MM_returnValue"
 							value="Submit" />
