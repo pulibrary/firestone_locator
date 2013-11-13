@@ -93,17 +93,17 @@ if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
 		<?php 
 
 		if (isset($error)) {
-			echo "<h2>Update Failed</h2>\n";
+			echo "<div class='messages error'><h2>Update Failed</h2>\n";
 			echo "<div class='message'>\n";
-			echo "<p>$error</p>\n";
-
+			echo "<p>$error</p></div>\n";
+		
 			echo "</div>\n";
-
+		
 		} else if (isset($success)) {
-			echo "<h2>Update Successful</h2>\n";
-			echo "<div class='success'>\n";
+			echo "<div class='messages status'><h2>Update Successful</h2>\n";
+			echo "<div class='message'>\n";
 			echo "<p>$success</p>\n";
-			echo "</div>\n";
+			echo "</div></div>\n";
 		}
 
 		?>
@@ -179,7 +179,7 @@ if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
 
 			<?php do { ?>
 			<tr
-			<?php if ($row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "style=\"background-color: orange\""?>>
+			<?php if (isset($_GET['id_cn'])&&$row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "style=\"background-color: orange\""?>>
 				<td class="">&nbsp;</td>
 
 				<td class="topbody"><a
