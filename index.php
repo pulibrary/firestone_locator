@@ -3,7 +3,7 @@ include('includes/db_config.php');
 include('includes/layout.php');
 
 include('includes/item.php');
-include('extandbranch.php');
+include('includes/extandbranch.php');
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
