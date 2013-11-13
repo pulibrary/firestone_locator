@@ -49,6 +49,7 @@ $(document).ready(function() {
 	  });
 
 	$("input.deploy").click(function () { 
+		
 	    $.post("deployDB.php",       
 	      $("#deploy_form").serialize(),      
 	      function(data){                
@@ -74,7 +75,7 @@ $(document).ready(function() {
 		<h3>Deploy to Production</h3>
 		<div class="indent">
 		<p>Deploy the current staging environment to production.  Deploying will backup both environments before overwriting production.</p>
-		<form action="deployDB.php" id="deploy_form">
+		<form action="#" id="deploy_form">
 		<input type="submit" value="Deploy" class="deploy btn" />
 		</form>		
 		</div>

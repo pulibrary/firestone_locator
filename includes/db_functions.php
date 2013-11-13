@@ -51,12 +51,69 @@ function db_deploy() {
 			return false;
 		} else {
 			echo "<div class='messages status'><div class='message-icon'><i class='fa fa-check' /></div><div class='message'>The stage environment has been deployed to production.  Both environments have been backed up.</div></div>";
+			move_files();
 			return true;
 		}		
 	}
+	
 
 }
-
+function move_files() {
+	global $dbconnects, $db_settings, $db_tools;
+	
+	$file_list = array();
+	$image_selects[] = "SELECT DISTINCT Image_cn from lctr_Octavos_cn order by Image_cn";
+	$image_selects[] = "SELECT DISTINCT Image_cn from lctr_Oversize_cn order by Image_cn";
+	$image_selects[] = "SELECT DISTINCT Image_cn from lctr_Collections_cn order by Image_cn";
+	foreach ($image_selects as $imageSQL) {
+		if ($fileResult = $dbconnects["stage"]->query($imageSQL)) {
+			$i = 1;
+			while ($fileRecord = $fileResult->fetch_assoc()) {
+				$fileRecord;
+				if (array_search($fileRecord["Image_cn"],$file_list)===false) {
+					$file_list[] = $fileRecord["Image_cn"];
+					$i++;
+				}
+			}
+		} else {
+			
+		}
+	}
+	exec("rm ../images/production/f/*",$output,$returncode);
+	if ($returncode!=0) {
+		echo "<div class='messages error'><div class='message-icon'><i class='fa fa-exclamation-triangle' /></div><div class='message'>An error occured, the production image files could not be removed.</div></div>";
+		return false;
+	} else {
+		$i = 1;
+		$j = 0;
+		$errors ="";
+		foreach ($file_list as $imageFile) {
+			if (!file_exists("../images/stage/f/$imageFile")) {
+				$error = true;
+				$j++;
+				$errors .= "<li>".$imageFile." not found</li>\n";
+			} else if (!copy("../images/stage/f/$imageFile", "../images/production/f/$imageFile")) {
+				$filename = "../images/stage/f/$imageFile";
+				if (!copy("../images/stage/f/".$filename["filename"]."PNG", "../images/production/f/".$filename["filename"]."PNG")) {
+					$error=true;
+					$errors .= "<li>".$filename["filename"]."PNG copy failed</li>\n";
+						
+				}
+				$error = true;
+				$j++;
+				$errors .= "<li>$imageFile copy failed</li>\n";
+			} else {
+				$i++;
+			}
+		}
+		if ($error) {
+			echo "<div class='messages error'><div class='message-icon'><i class='fa fa-exclamation-triangle' /></div><div class='message'>$j files were not copied from stage to production.<ul>$errors</ul></div></div>";
+		}
+		echo "<div class='messages status'><div class='message-icon'><i class='fa fa-check' /></div><div class='message'>$i files of ".sizeof($file_list)." were copied from stage to production.</div></div>";
+		return true;
+	}
+	
+}
 function db_backuplist() {
 	$files = scandir("../sql-files", 1);
 	$prod_files = array();
