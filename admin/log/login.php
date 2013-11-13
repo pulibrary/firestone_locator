@@ -1,5 +1,5 @@
 <?php
-include_once('../includes/cas/CAS.php');
+include_once('../../includes/cas/CAS.php');
 phpCAS::setDebug("/tmp/cas.log");
 phpCAS::client(CAS_VERSION_2_0,'fed.princeton.edu',443,'cas');
 phpCAS::forceAuthentication();
