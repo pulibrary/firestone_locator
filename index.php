@@ -34,7 +34,7 @@ include('includes/extandbranch.php');
 				<?php } ?>
 			<div id="locInfo">
 				<button class="ui-icon ui-icon-close">Close Panel</button>
-				<?php include('locInfo.php') ?>
+				<?php include('includes/locInfo.php') ?>
 			</div>
 			<div id="item-details">
 				<button class="ui-icon ui-icon-close">Close Panel</button>
