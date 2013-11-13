@@ -1,4 +1,4 @@
-function locator(elementId, data) {
+function locator(elementId, data, env) {
 	function createGrid(gridXYstring, numRows, numCols) {//for making 2D grid
 		var gridXY = gridXYstring.split(",");
 		if (gridXY[gridXY.length-1] == "") {
@@ -108,12 +108,12 @@ function locator(elementId, data) {
 	var xTileEnd = Math.round((data.end_x-5)/10);
 	var yTileEnd = Math.round((data.end_y-5)/10);
 
-
+	
 	var canvas = Raphael("locator", 750, 565+56);
-	var floorPlan = canvas.image("Images/"+data.lc+"/"+data.image.replace(".SWF", ".png"),
+	var floorPlan = canvas.image("images/"+env+"/"+data.lc+"/"+data.image.replace(".SWF", ".png"),
 	 								data.shift_x, data.shift_y,
 	 								fpSize.width * data.scale_x, fpSize.height * data.scale_y);
-	var legend = canvas.image("Images/f/legend.png",
+	var legend = canvas.image("images/"+env+"/"+data.lc+"/legend.png",
 	 								0, parseInt(data.shift_y) + fpSize.height * data.scale_x,
 									746, 56);
 	var textBox = canvas.rect(15, 15, 120, 80);
@@ -144,10 +144,24 @@ function locator(elementId, data) {
 		    this.attr({cx: this.ox + dx, cy: this.oy + dy, opacity: 0.5});
 		},
 		up : function (event) { // restoring state
-			this.attr({cx: snapX(event.offsetX), cy: snapY(event.offsetY), opacity: 1});
+			var posx = 0;
+			var posy = 0;
+			if (!event) var event = window.event;
+			if (event.pageX || event.pageY) 	{
+				posx = event.pageX;
+				posy = event.pageY;
+			}
+			else if (event.clientX || event.clientY) 	{
+				posx = event.clientX + document.body.scrollLeft
+					+ document.documentElement.scrollLeft;
+				posy = event.clientY + document.body.scrollTop
+					+ document.documentElement.scrollTop;
+			}
+			
+			this.attr({cx: snapX(posx-22), cy: snapY(posy-60), opacity: 1});
 
-			var	xTileStart = Math.round((event.offsetX-tileWidth/2)/tileWidth);
-			var	yTileStart = Math.round((event.offsetY-tileHeight/2)/tileHeight);
+			var	xTileStart = Math.round((posx-22-tileWidth/2)/tileWidth);
+			var	yTileStart = Math.round((posy-60-tileHeight/2)/tileHeight);
 			var path = findPath(grid, yTileStart, xTileStart, yTileEnd, xTileEnd);
 			removeLines(lines);
 			
