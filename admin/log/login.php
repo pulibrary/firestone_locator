@@ -2,7 +2,14 @@
 include_once('phpCAS/CAS.php');
 phpCAS::setDebug("/tmp/cas.log");
 phpCAS::client(CAS_VERSION_2_0,'fed.princeton.edu',443,'cas');
-phpCAS::forceAuthentication();
+// force CAS authentication
+phpCAS::setNoCasServerValidation();
+#phpCAS::setFixedServiceURL(BASE_URL."admin");
+
+if (!phpCAS::checkAuthentication () ) {
+	phpCAS::forceAuthentication();
+}
+
 if (isset($_REQUEST['logout'])) {
 	phpCAS::logout();
 }
