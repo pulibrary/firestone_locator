@@ -1,0 +1,288 @@
+// I gather this file is a starting point for the project.
+@import "bootstrap";
+// @import "font-awesome.scss";
+
+// Include responsive Bootstrap styles
+// @import "bootstrap-responsive";
+
+// Default Core Site styles //
+// Stole Color names from: //
+// http://chir.ag/projects/name-that-color //
+// Just for a way to describe the colors. //
+$princeton-orange: rgb(255, 153, 51);
+$malibu: #63C0F8; // one of the blues
+$azure-radiance: #0098f4; // another blue h2
+$wild-sand: #F5F5F5; // Lightest Gray
+$silver: #CCCCCC; // Light Gray
+$mercury: #E2E2E2; // Header/Footer Gray
+$boulder: #777777; // Darker Gray
+$dusty-gray: #999999; // Mid-Dark Gray
+$dove-gray: #666666; // Darkest Gray
+$ecstasy: #F58026; // Orange
+$cinnamon: #7F3D00; // Brown
+
+// Importing Google Fonts, PT Sans and Arvo
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif|Roboto);
+
+$body-text-color: rgb(33,33,33); 
+$body-background-color: #FFFFFF;
+
+$link_color: $princeton-orange;
+$font-sans: 'Roboto', sans-serif;
+$font-serif: 'Droid+Serif', serif;
+$font-family: $font-sans;
+$font-header-1: $font-serif;
+$font-header-2: $font-serif;
+$font-header-3: $font-serif;
+$font-header-4: $font-serif;
+$font-header-5: $font-serif;
+$font-header-6: $font-serif;
+$color-header-1: $ecstasy;
+$color-header-2: $azure-radiance;
+$color-header-3: $boulder;
+$color-header-4: $ecstasy;
+$color-header-5: $azure-radiance;
+$color-header-6: #000000;
+$header-link: $cinnamon;
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+  color: $body-text-color;
+  font-size: 0.9em;
+  background-color: $body-background-color;
+  font-family: $font-family;
+}
+
+.malibu {
+  color: $malibu;
+}
+.mercury {
+  color: $mercury;
+}
+.dusty-gray {
+  color: $dusty-gray;
+}
+.ecstasy {
+  color: $ecstasy;
+}
+.azure-radiance {
+  color: $azure-radiance;
+}
+.princeton-orange {
+  color: $princeton-orange;
+}
+.boulder {
+  color: $boulder;
+}
+.cinnamon {
+  color: $cinnamon;
+}
+.silver {
+  color: $silver;
+}
+.wild-sand {
+  color: $wild-sand;
+}
+.dove-gray {
+  color: $dove-gray;
+}
+h1 {
+    color: $color-header-1;
+    font-family: $font-header-1;
+    font-size: 2em;
+    margin: 0.5em 0 0.167em;
+    font-weight:normal;
+    line-height: 1.167em;
+}
+h2 {
+    color: $color-header-2;
+    font-family: $font-header-2;
+    font-size: 1.5em;
+    font-weight:normal;
+    margin-top:8px;
+}
+
+h3 {
+    color: $color-header-3;
+    font-family: $font-header-3;
+    font-size: 1.17em;
+    margin: 1em 0 0 0;
+}
+
+h4 {
+    color: $color-header-4;
+    font-family: $font-header-4;
+    font-size: 1em;
+    margin: 1.33em 0 0.867em 0;
+    font-weight:bold;
+}
+
+h5 {
+    color: $color-header-5;
+    font-family: $font-header-5;
+    font-size: 0.83em;
+    margin: 1.67em 0 1em 0;
+    font-weight:bold;
+}
+
+h6 {
+    color: $color-header-6;
+    font-family: $font-header-6;
+    font-size: 0.75em;
+    margin: 2.33em 0 1em 0;
+    font-weight:bold;
+}
+h2 a:link, h2 a:visited,
+h3 a:link, h3 a:visited {
+  color: $cinnamon;
+  text-decoration:none;
+}
+
+/* =============================================================================
+   Tables
+   ========================================================================== */
+
+/*
+ * Remove most spacing between table cells
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:none;
+}
+
+th,
+thead th,
+th.active,
+td.active{
+border-left:none;
+border-right:none;
+background-color: $dove-gray;
+color:#fff;
+}
+
+tr:hover td{
+background: transparent;
+}
+
+tr.even, tr.odd{
+border-bottom: 1px dotted $silver;
+background-color:transparent;
+}
+
+tr.odd:hover td.active,
+tr.odd td.active,
+tr.odd td{
+background-color: $wild-sand;
+}
+
+tr.even:hover td.active,
+tr.even td.active,
+tr.even td{
+background-color:transparent;
+}
+
+td, th{
+padding:3px;
+}
+
+th a img {
+margin: 0 0 3px 8px;
+}
+
+table tr td p{
+margin:0;
+}
+
+th a:link, th a:visited {
+  color: #FFFFFF;
+}
+th a:hover {
+    color: $ecstasy;
+}
+
+/* line 10, ../../../../../../Library/Ruby/Gems/1.8/gems/bootstrap-sass-2.2.2.0/vendor/assets/stylesheets/bootstrap/_buttons.scss */
+.btn {
+
+  color: #333333;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  background-color: $ecstasy;
+  background-image: -moz-linear-gradient(top, $princeton-orange, $ecstasy);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($princeton-orange), to($ecstasy));
+  background-image: -webkit-linear-gradient(top, $princeton-orange, $ecstasy);
+  background-image: -o-linear-gradient(top, $princeton-orange, $ecstasy);
+  background-image: linear-gradient(to bottom, $princeton-orange, $ecstasy);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$princeton-orange', endColorstr='$ecstasy', GradientType=0);
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #e6e6e6;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  border: 1px solid #bbbbbb;
+  border-bottom-color: #a2a2a2;
+
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+/* line 496, ../../../../../../Library/Ruby/Gems/1.8/gems/bootstrap-sass-2.2.2.0/vendor/assets/stylesheets/bootstrap/_mixins.scss */
+.btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] {
+  color: #ffffff;
+  background-color: #000000;
+  *background-color: #000000;
+    background-position: 0 -30px;
+}
+.btn:active, .btn.active {
+  background-color: $princeton-orange \9;
+}
+
+div.messages {
+    background-position: 8px 8px;
+    background-repeat: no-repeat;
+    border: 1px solid;
+    margin: 6px 0;
+    padding: 10px 10px 10px 50px;
+}
+div.status {
+    border-color: #BBEE77;
+}
+div.status, .ok {
+    color: #234600;
+}
+div.status, table tr.ok {
+    background-color: #F8FFF0;
+}
+div.warning {
+    border-color: #EEDD55;
+}
+div.warning, .warning {
+    color: #884400;
+}
+div.warning, table tr.warning {
+    background-color: #FFFCE5;
+}
+div.error {
+    border-color: #ED541D;
+}
+div.error, .error {
+    color: #8C2E0B;
+}
+div.error, table tr.error {
+    background-color: #FEF5F1;
+}
+div.error p.error {
+    color: #333333;
+}
+div.messages ul {
+    margin: 0 0 0 1em;
+    padding: 0;
+}
+div.messages ul li {
+    list-style-image: none;
+}
