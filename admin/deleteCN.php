@@ -45,9 +45,7 @@ if (
 				
 			} else if ($site=="lctr_Coordinates_cn") {
 				$success = "<div class='response'><strong>Building:</strong> ".$reqRecord["BuildingCode_cn"]."<br/>\n";
-				$success .= "<strong>Floor:</strong> ".$reqRecord["floor_cn"]."<br/>\n";
-				print_r($reqRecord);
-				
+				$success .= "<strong>Floor:</strong> ".$reqRecord["floor_cn"]."<br/>\n";				
 				$success .= "</div>\n";
 			} else if ($site=="lctr_Oversize_cn"||$site=="lctr_Octavos_cn") {
 				$success = "<div class='response'>\n";
