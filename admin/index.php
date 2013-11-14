@@ -173,8 +173,8 @@
 			Every new floor plan entered into the system must be processed and
 			mapped to indicate all patron-accessible areas.By navigating to the
 			&ldquo;<a
-				href="setStartingPoints.php"
-				title="setStartingPoints.php">Manage
+				href="indexDBdesign.php"
+				title="indexDBdesign.php">Manage
 				Maps</a>&rdquo; section of the site, each floor plan database can be
 			administered and new databases can be created.
 		</p>
