@@ -33,17 +33,18 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "InsertCallNum")) {
 		$val1 = "";
 	}
 
-	$insertSQL = sprintf("REPLACE INTO lctr_External_cn (id_cn, left_cn, site_cn, message_cn) VALUES (%d, %s, %s, %s)",
+	$insertSQL = sprintf("REPLACE INTO lctr_External_cn (id_cn, LocationDisplayName_cn, left_cn, site_cn, message_cn) VALUES (%d, %s, %s, %s, %s)",
 			GetSQLValueString($_POST['id_cn'], "int"),
+			GetSQLValueString($_POST['display_name'], "text"),
 			GetSQLValueString($_POST['location_code'], "text"),
 			GetSQLValueString($val1, "text"),
 			GetSQLValueString($_POST['message'], "text"));
-
+	
 	if ($dbconnects["stage"]->query($insertSQL)===FALSE) {
-		$error = $mysqli->error;
+		$error = $dbconnects["stage"]->error;
 	} else {
-		$success = "Row updated.";
-		$success = "<div class='response'><strong>Code:</strong> ".$_POST['location_code']."<br/>\n";
+		$success = "<div class='response'><strong>Location:</strong> ".$_POST['display_name']."<br/>\n";
+		$success .= "<strong>Location Code:</strong> ".$_POST['location_Code']."<br/>\n";
 		$success .= "<strong>Message Display:</strong> ".$_POST['message']."<br/>\n";
 		$success .= "</div>\n";
 	}
@@ -110,11 +111,15 @@ if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
 		<table width="100%" border="0" class="code_table">
 			<tr>
 				<th class="" colspan="2">&nbsp;</th>
+				<th class="display_name">
+					<a href="indexExternal.php?order=LocationDisplayName_cn">Display Name</a>
+				</th>
+				
 				<th class="code">
 				<a href="indexExternal.php?order=left_cn">Code</a>
 				</th>
 
-				<th class=""><a href="indexExternal.php?order=site_cn">Website Link</a>
+				<th class="sitelink"><a href="indexExternal.php?order=site_cn">Website Link</a>
 				</th>
 				<th class="message"><a href="indexExternal.php?order=message_cn">Message</a>
 				</th>
@@ -132,9 +137,16 @@ if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
 					</th>
 					<td>
 						<div align="center" class="input">
+							<input name="display_name" type="text" id="display_name"
+								value="<?php if(isset($_GET['display_name'])) echo $_GET['display_name']; ?>"
+								size="20" />
+						</div>
+					</td>
+					<td>
+						<div align="center" class="input">
 							<input name="location_code" type="text" id="location_code"
 								value="<?php if(isset($_GET['a'])) echo $_GET['a']; ?>"
-								size="20" />
+								size="10" />
 						</div>
 					</td>
 
@@ -196,7 +208,8 @@ if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
 				</a>
 				</td>
 
-
+				<td class="topbody"><?php echo $row_rsAdminCallNum['LocationDisplayName_cn']; ?>
+				</td>
 				<td class="topbody"><?php echo $row_rsAdminCallNum['left_cn']; ?>
 				</td>
 
