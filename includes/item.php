@@ -295,13 +295,15 @@ function RangeLocation(){
 
 	//Check for oversize collection
 	$oversize_key = array("q", "f", "e");
-	$last = $item->callnum[strlen($item->callnum)-1];
-	for ($i = 0; $i < sizeof($oversize_key); $i++){
-		if (strcasecmp($oversize_key[$i], $last) == 0){
-			$collection = "Oversize";
+	$lastindex = strlen($item->callnum);
+	if ($lastindex!=0) {
+		$last = $item->callnum[$lastindex-1];
+		for ($i = 0; $i < sizeof($oversize_key); $i++){
+			if (strcasecmp($oversize_key[$i], $last) == 0){
+				$collection = "Oversize";
+			}
 		}
 	}
-
 	$lc = $item->lc;
 	if ($lc == "fnc")
 		$lc = "f";
