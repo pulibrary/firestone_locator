@@ -1,29 +1,33 @@
 @CHARSET "UTF-8";
 body {behavior: url(csshover.htc);} /* WinIE behavior call */
-h1 {color: #838B8B; border-bottom: 1px solid; margin-bottom: 0;}
 #main {color: #CCC; margin-left: 9em; padding: 3em 0 1px 10%;
   border-left: 1px solid;}
-div#nav {float: left; margin: -1px 0 0 9em;
-  background: #FFF; border: 1px solid #AAA;}
+div#nav {  background: #000; border: 1px solid #AAA; height: 2em;}
 div#nav ul {margin: 0; padding: 0; background: white;
-  border: 1px solid #CCC; border-width: 0 1px;}
+  border: 1px solid #FFF; border-width: 0 1px;}
 div#nav li {position: relative; list-style: none; margin: 0;
-  float: left; width: 9em; line-height: 1em;}
+  float: left; width: 12em; line-height: 1.5em;}
 div#nav li:hover {background: #FF8C00;}
 div#nav li.submenu {}
 div#nav li.submenu:hover {background-color: #FF8C00;}
 div#nav li a {display: block; padding: 0.25em 0 0.25em 0.5em;
-  text-decoration: none; width: 6.5em;}
+  text-decoration: none; width: 100%; color: #FFF; font-weight: bold; }
 div#nav>ul a {width: auto;}
-div#nav ul ul {position: absolute; width: 9em;
+div#nav ul ul {position: absolute; width: 14em;
   display: none;}
-div#nav ul ul li {border-bottom: 1px solid #CCC;}
+div#nav ul ul li {border-bottom: 1px solid #CCC; width: 100%;}
+div#nav li ul li a {display: block; padding: 0.25em 0 0.25em 0.5em;
+  text-decoration: none; width: 100%; color: #000; background-color: #FFF; font-weight: bold; 
+  border-left: 1px solid #ccc;  border-right: 1px solid #ccc;
+
+  }
 div#nav li.submenu li.submenu {}
 div#nav li.submenu li.submenu:hover {background-color: #FF8C00;}
 div#nav ul.level1 li.submenu:hover ul.level2, 
-div#nav ul.level2 li.submenu:hover ul.level3 {display:block;}
-div#nav ul.level2 {top: 1.5em; left: -1px;}
-div#nav ul.level3 {top: -1px; left: 9em;
+div#nav ul.level2 li.submenu:hover ul.level3 {display:block; background-color: #FF8C00; }
+div#nav li ul li a:hover {background-color: #000; font-weight: bold; color: #FFF;}
+div#nav ul.level2 {top: 2em; left: 0;}
+div#nav ul.level3 {top: 0; left: 9em;
   border-top: 1px solid #CCC;}
 .style1 {color: #000000}
 
@@ -113,3 +117,17 @@ div.indent {
 .edit_row {
 	background-color: orange;
 }
+
+.header img {
+	margin-left: 20px;
+}
+.header h1 {
+	display: inline;
+	color: #838B8B;
+	margin-left: 20px;
+}
+div#nav {
+	clear:both;
+}
+.header { border-bottom: 1px solid; padding-bottom: 1em;}
+
