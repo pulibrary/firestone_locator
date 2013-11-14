@@ -40,10 +40,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "InsertCallNum")) {
 			$subRecord = $subResult->fetch_assoc();
 			$success = "<div class='response'>\n";	
 			$success .= "<strong>Location Name:</strong>".$subRecord["LocationDisplayName_cn"]."<br/>\n";	
-			$success .= "<strong>Range Added:</strong><br/>\n";
-			$success .= "<blockquote><strong>Left CN:</strong> ".$subRecord["left_cn"]."<br/>\n";
-			$success .= "<strong>Right CN:</strong> ".$subRecord["right_cn"]."<br/>\n";
-			$success .= "</blockquote>\n";
+			$success .= "<strong>Code Added:</strong> ".$subRecord["left_cn"]."<br/>\n";
 			$success .= "<strong>Building:</strong> ".$subRecord["BuildingCode_cn"]."<br/>\n";
 			$success .= "<strong>Location:</strong> ".$subRecord["LocationMap_cn"]."<br/>\n";
 			$success .= "<strong>Image File:</strong> ".$subRecord["Image_cn"]."<br/>\n";
@@ -242,7 +239,7 @@ $(document).ready(function() {
 
 			<?php do { ?>
 			<tr
-			<?php if ($row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "style=\"background-color: orange\""?>>
+			<?php if (isset($_GET['id_cn']) && $row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "style=\"background-color: orange\""?>>
 				<td class="">&nbsp;</td>
 				<td class="topbody">
 				<a
