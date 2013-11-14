@@ -101,7 +101,7 @@ if ($id > 0){
 		}
 
 	}
-    $url = (isset($_GET['useTestCatalog']) && $_GET['useTestCatalog'] == "on") ? "http://libweb5.princeton.edu/GetVoyRecTestCat/getvoyrec.aspx?item=1&bib=1&mfhd=1&id=" : "http://libweb5.princeton.edu/getvoyrec/getvoyrec.aspx?item=1&bib=1&mfhd=1&id=";
+    $url = (isset($_GET['catalog']) && $_GET['catalog'] == "test") ? "http://libweb5.princeton.edu/GetVoyRecTestCat/getvoyrec.aspx?item=1&bib=1&mfhd=1&id=" : "http://libweb5.princeton.edu/getvoyrec/getvoyrec.aspx?item=1&bib=1&mfhd=1&id=";
     
 	$file = $url . $id;
 
