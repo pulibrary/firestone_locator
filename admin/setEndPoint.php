@@ -76,7 +76,7 @@
 		<script type="text/javascript">
 				
 		// Load flash movie
-		var fl = new SWFObject("flash/setPoints.swf", "Set Points", "760", "640", "9", "#FFFFFF");
+		var fl = new SWFObject("flash/setpoints.swf", "Set Points", "760", "640", "9", "#FFFFFF");
 		
 		fl.addVariable("id","<?php echo $id;?>");	
 		fl.addVariable("db","<?php echo $db;?>");	
