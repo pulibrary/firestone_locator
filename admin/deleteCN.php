@@ -35,15 +35,12 @@ if (
 				$success = "<div class='response'>\n";
 				
 				$success .= "<strong>Location Name:</strong>".$reqRecord["LocationDisplayName_cn"]."<br/>\n";
-				
-				$success .= "<strong>Range Deleted:</strong><br/>\n";
-				$success .= "<blockquote><strong>Left CN:</strong> ".$reqRecord["left_cn"]."<br/>\n";
+				$success .= "<strong>Code:</strong> ".$reqRecord["left_cn"]."<br/>\n";
 				$success .= "<strong>Building:</strong> ".$reqRecord["BuildingCode_cn"]."<br/>\n";
 				$success .= "<strong>Location:</strong> ".$reqRecord["LocationMap_cn"]."<br/>\n";
 				$success .= "<strong>Image File:</strong> ".$reqRecord["Image_cn"]."<br/>\n";
 				$success .= "<strong>Floor:</strong> ".$reqRecord["FloorDB_cn"]."<br/>\n";
 				$success .= "<strong>Message:</strong> ".$reqRecord["message_cn"]."<br/>\n";
-				$success .= "</blockquote>\n";
 				$success .= "</div>\n";
 				
 			} else if ($site=="lctr_Coordinates_cn") {

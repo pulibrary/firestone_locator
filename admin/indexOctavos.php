@@ -251,7 +251,7 @@ $(document).ready(function() {
 
 			<?php do { ?>
 			<tr
-			<?php if ($row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "style=\"background-color: orange\""?>>
+			<?php if (isset($_GET['id_cn']) && $row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "class='edit_row'"?>>
 				<td colspan="2"><a
 					href="indexOctavos.php?id_cn=<?php echo $row_rsAdminCallNum['id_cn']; ?>&amp;order=<?php echo $order; ?>&amp;site=lctr_Octavos_cn&amp;return=../indexOctavos.php&amp;edit_mode=true"><i
 						class="fa fa-edit" title="Update Entry"> </i> </a> <a

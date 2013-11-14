@@ -147,7 +147,7 @@ $(document).ready(function() {
 
 		<?php do { ?>
 		<tr
-		<?php if ($row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "style=\"background-color: orange\""?>>
+		<?php if ($row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "class='edit_row'"?>>
 			<td class="">&nbsp;</td>
 			<td class="topbody"><a
 				href="indexDBdesign.php?id_cn=<?php echo $row_rsAdminCallNum['id_cn']; ?>&amp;order=<?php echo $order; ?>&amp;site=lctr_Coordinates_cn&amp;return=indexDBdesign.php

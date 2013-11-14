@@ -45,8 +45,31 @@ th {min-width: 100px;}
 input[type=text] {
 	width: auto;
 }
+.message-icon {
+	height: 64px;
+	width: 64px;
+	font-size: 2em;
+	float: left;
+	margin-left: -30px;
+}
+.message-icon i {
+	padding-left: 20px;
+}
+.message {
+	width: 100%;
+}
+
 .code_table th.code {
-	width: 80px;
+	width: 50px;
+}
+.code_table th.display_name {
+	width: 250px;
+}
+.code_table th.site_link {
+	width: 100px;
+}
+.code_table th.message {
+	width: 300px;
 }
 .code_table .fa-edit {
 	text-align: right;
@@ -61,19 +84,7 @@ input[type=text] {
 	margin: 1em auto 0 auto;
 }
 
-.message-icon {
-	height: 64px;
-	width: 64px;
-	font-size: 2em;
-	float: left;
-	margin-left: -30px;
-}
-.message-icon i {
-	padding-left: 20px;
-}
-.message {
-	width: 100%;
-}
+
 h2 {
 	font-size: 1.5em;
 	margin: 2em 0 1em 0;
@@ -97,4 +108,8 @@ div.indent {
 
 #tabs {
 	z-index: 10;
+}
+
+.edit_row {
+	background-color: orange;
 }

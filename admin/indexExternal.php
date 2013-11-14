@@ -191,7 +191,7 @@ if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
 
 			<?php do { ?>
 			<tr
-			<?php if (isset($_GET['id_cn'])&&$row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "style=\"background-color: orange\""?>>
+			<?php if (isset($_GET['id_cn'])&&$row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "class='edit_row'"?>>
 				<td class="">&nbsp;</td>
 
 				<td class="topbody"><a

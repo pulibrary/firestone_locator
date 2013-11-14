@@ -243,7 +243,7 @@ $(document).ready(function() {
 
 			<?php do { ?>
 			<tr
-			<?php if ($row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "style=\"background-color: orange\""?>>
+			<?php if (isset($_GET['id_cn']) && $row_rsAdminCallNum['id_cn'] == $_GET['id_cn']) echo "class='edit_row'"?>>
 				<td colspan="2">
 					<a href="indexOversize.php?id_cn=<?php echo $row_rsAdminCallNum['id_cn']; ?>&amp;order=<?php echo $order; ?>&amp;site=lctr_Oversize_cn&amp;return=../indexOversize.php&amp;edit_mode=true"><i class="fa fa-edit" title="Update Entry"> </i></a>
 					<a href="deleteCN.php?id_cn=<?php echo $row_rsAdminCallNum['id_cn']; ?>&amp;order=<? echo $order; ?>&amp;site=lctr_Oversize_cn&amp;return=../indexOversize.php"><i class="fa fa-trash-o" title="Delete Entry"> </i></a>
