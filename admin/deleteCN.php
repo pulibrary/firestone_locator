@@ -67,7 +67,8 @@ if (
 
 				$success .= "</div>\n";
 			} else if ($site=="lctr_External_cn") {
-				$success = "<div class='response'><strong>Code:</strong> ".$reqRecord['LocationDisplayName_cn']."<br/>\n";
+				$success = "<div class='response'><strong>Location:</strong> ".$reqRecord['LocationDisplayName_cn']."<br/>\n";
+				$success .= "<strong>Location Code:</strong> ".$reqRecord['left_cn']."<br/>\n";
 				$success .= "<strong>Message Display:</strong> ".$reqRecord['message_cn']."<br/>\n";
 				$success .= "</div>\n";
 			}
@@ -80,7 +81,7 @@ if (
 	$error = "Required variables not found, no action taken";
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
