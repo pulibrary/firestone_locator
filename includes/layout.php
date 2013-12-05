@@ -111,8 +111,9 @@ function page_footer() {
 	?>
 <div id="footer">
 	&copy; 2005-
-	<?php echo date("Y");?>
-	. The Trustees of Princeton University
+	<?php echo date("Y");?>.
+ The Trustees of <a href="http://www.princeton.edu">Princeton University</a>.  All Rights Reserved.<br/>
+ <a href="http://library.princeton.edu">Princeton University Library</a></a>
 </div>
 <?php 
 }
