@@ -80,12 +80,12 @@ function page_header() {
 		</li>
 		<li>
 			<div align="center">
-				<a href="indexDBdesign.php">Manage Maps </a>
+				<a href="indexDBdesign.php">Manage Maps</a>
 			</div>
 		</li>
 		<li>
 			<div align="center">
-				<a href="indexUpdateDB.php">Apply Changes</a>
+				<a href="indexUpdateDB.php">Manage Databases</a>
 			</div>
 		</li>
 		<li>
@@ -113,7 +113,7 @@ function page_footer() {
 	&copy; 2005-
 	<?php echo date("Y");?>.
  The Trustees of <a href="http://www.princeton.edu">Princeton University</a>.  All Rights Reserved.<br/>
- <a href="http://library.princeton.edu">Princeton University Library</a></a>
+ <a href="http://library.princeton.edu">Princeton University Library</a>
 </div>
 <?php 
 }

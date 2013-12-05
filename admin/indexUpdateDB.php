@@ -1,6 +1,6 @@
 <?php 
 /*
-* indexUpdateDB.php
+ * indexUpdateDB.php
 *
 * Updates Production DB
 *
@@ -63,6 +63,21 @@ $(document).ready(function() {
 	      },
 	      "html");
 	  });
+	$("input.backup").click(function () { 
+		
+	    $.post("backupDB.php",       
+	      $("#backup_form").serialize(),      
+	      function(data){                
+	        $.colorbox({
+	          html:   data,
+	          open:   true,
+	          width: "600px",
+	          height: "400px",
+	          iframe: false            
+	        });
+	      },
+	      "html");
+	  });
 	  
 });
 </script>
@@ -72,21 +87,29 @@ $(document).ready(function() {
 
 	<div class="content">
 		<h2>Database Updates</h2>
+		<h3>Backup on Demand</h3>
+		<div class="indent">
+			<p>Creates a backup of the stage environment..</p>
+			<form action="#" id="backup_form">
+				<input type="submit" value="Backup" class="backup btn" />
+			</form>
+		</div>
 		<h3>Deploy to Production</h3>
 		<div class="indent">
-		<p>Deploy the current staging environment to production.  Deploying will backup both environments before overwriting production.</p>
-		<form action="#" id="deploy_form">
-		<input type="submit" value="Deploy" class="deploy btn" />
-		</form>		
+			<p>Deploy the current staging environment to production. Deploying
+				will backup both environments before overwriting production.</p>
+			<form action="#" id="deploy_form">
+				<input type="submit" value="Deploy" class="deploy btn" />
+			</form>
 		</div>
 
-		<h3>Restore Databases</h3>	
+		<h3>Restore Databases</h3>
 		<?php 
-		
+
 		db_backuplist();
-		
+
 		?>
-		
+
 	</div>
 	<?php page_footer();?>
 </body>

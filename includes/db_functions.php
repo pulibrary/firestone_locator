@@ -93,17 +93,18 @@ function move_files() {
 				$j++;
 				$errors .= "<li>".$imageFile." not found</li>\n";
 			} else if (!copy("../images/stage/f/$imageFile", "../images/production/f/$imageFile")) {
-				$filename = "../images/stage/f/$imageFile";
-				if (!copy("../images/stage/f/".$filename["filename"]."PNG", "../images/production/f/".$filename["filename"]."PNG")) {
-					$error=true;
-					$errors .= "<li>".$filename["filename"]."PNG copy failed</li>\n";
-						
-				}
 				$error = true;
 				$j++;
 				$errors .= "<li>$imageFile copy failed</li>\n";
 			} else {
-				$i++;
+				$filename = "../images/stage/f/$imageFile";
+				if (!copy("../images/stage/f/".$filename["filename"]."PNG", "../images/production/f/".$filename["filename"]."png")) {
+					$error=true;
+					$errors .= "<li>".$filename["filename"]."PNG copy failed</li>\n";
+				
+				} else {
+					$i++;
+				}
 			}
 		}
 		if ($error) {
