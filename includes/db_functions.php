@@ -97,10 +97,10 @@ function move_files() {
 				$j++;
 				$errors .= "<li>$imageFile copy failed</li>\n";
 			} else {
-				$filename = "../images/stage/f/$imageFile";
-				if (!copy("../images/stage/f/".$filename["filename"]."PNG", "../images/production/f/".$filename["filename"]."png")) {
+				$filename = pathinfo("../images/stage/f/$imageFile");
+				if (!copy("../images/stage/f/".$filename["filename"].".png", "../images/production/f/".$filename["filename"].".png")) {
 					$error=true;
-					$errors .= "<li>".$filename["filename"]."PNG copy failed</li>\n";
+					$errors .= "<li>".$filename["filename"].".PNG copy failed</li>\n";
 				
 				} else {
 					$i++;

@@ -289,6 +289,13 @@ $(document).ready(function() {
 							class="itemout" href="setEndPoint.php?id=<?php echo $row_rsAdminCallNum['id_cn']; ?>&amp;db=lctr_Collections_cn"
 							target="_blank"><?php echo $row_rsAdminCallNum['LocationMap_cn']; ?>
 						</a>
+																		<?php 
+							if ($row_rsAdminCallNum["x_point_cn"]==0||$row_rsAdminCallNum["y_point_cn"]==0) {
+								?>
+							<i title="Start Point Not Defined" class="fa fa-warning"> </i>
+							<?php								
+							}	
+						?>
 					</div></td>
 
 
@@ -298,14 +305,8 @@ $(document).ready(function() {
 						<?php echo $row_rsAdminCallNum['Image_cn']; 
 						$image 		= $row_rsAdminCallNum['Image_cn'];
 						$build_loc 	= $row_rsAdminCallNum['BuildingCode_cn'];
-						$filename 	= "../images/stage/$build_loc/$image";
-						if (file_exists($filename)) {
-								
-							?>
-						<i title="Image Found" class="fa fa-check"> </i>
-						<?php
-						}
-						else {
+						$filename 	= "../images/stage/$build_loc/".trim($image);
+						if (!file_exists($filename)) {
 							?>
 						<i title="Image Missing" class="fa fa-warning"> </i>
 						<?php
