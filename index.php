@@ -14,11 +14,6 @@ include('includes/extandbranch.php');
 
 <?php javascript_public(); ?>
 <?php styles_public(); ?>
-<style type="text/css">
-#message {
-	width: 300px;
-}
-</style>
 </head>
 <body>
 	<div id="tabs">
@@ -30,7 +25,7 @@ include('includes/extandbranch.php');
 			<li id="tab-print"><a href="#print-page"><strong>Print this page</strong>
 			</a></li>
 			<li id="tab-contact-us"><a href="#contact-us">Contact us</a></li>
-			<li id="tab-locInfo"><a href="#locInfo">Location info</a></li>
+			<!--  <li id="tab-locInfo"><a href="#locInfo">Location info</a></li> -->
 		</ul>
 		<?php if ($item->message) { ?>
 		<div id="message">
@@ -40,10 +35,10 @@ include('includes/extandbranch.php');
 			</p>
 		</div>
 		<?php } ?>
-		<div id="locInfo">
+		<!--  <div id="locInfo">
 			<button class="ui-icon ui-icon-close">Close Panel</button>
-			<?php include('includes/locInfo.php') ?>
-		</div>
+			<?php #include('includes/locInfo.php') ?>
+		</div> //-->
 		<div id="item-details">
 			<button class="ui-icon ui-icon-close">Close Panel</button>
 			<p>
