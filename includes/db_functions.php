@@ -110,7 +110,7 @@ function move_files() {
 		}
 		foreach (glob("../images/stage/f/legend*") as $legendFile) {
 			$lf = pathinfo($legendFile);
-			if (!copy("../images/stage/f/".$lf["basename"], "../images/production/f/$".$lf["basename"])) {
+			if (!copy("../images/stage/f/".$lf["basename"], "../images/production/f/".$lf["basename"])) {
 				$error = true;
 				$j++;
 				$errors .= "<li>".$lf["basename"]." copy failed</li>\n";
