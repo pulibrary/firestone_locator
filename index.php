@@ -114,7 +114,6 @@ include('includes/extandbranch.php');
 				return false;
 			});
 		</script>
-		<?php } ?>
-<?php page_footer(); ?>
+		<?php page_footer(); } ?>
 </body>
 </html>
