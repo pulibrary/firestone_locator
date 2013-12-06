@@ -540,7 +540,7 @@ function loadError($msg=""){
 			<td valign="top"><a href="<?php echo $item->site; ?>">Access campus
 					library website</a></td>
 			<td valign="top"><a
-				href="http://library.princeton.edu/libraries/map.php">View map of
+				href="http://library.princeton.edu/about/locations">View map of
 					campus libraries</a></td>
 	
 		</tr>
