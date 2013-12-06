@@ -58,7 +58,7 @@ include('includes/extandbranch.php');
 			</form>
 		</div>
 	</div>
-	}
+	<?php } ?>
 	<?php 	
 	if ($item->external === true) {
 		loadExternal();
