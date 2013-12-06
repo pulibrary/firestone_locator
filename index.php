@@ -16,7 +16,7 @@ include('includes/extandbranch.php');
 <?php styles_public(); ?>
 </head>
 <body>
-	<?php if (!isset($_POST["embed"])||$_POST["embed"]==false) { ?>
+	<?php if (!isset($_GET["embed"])||$_GET["embed"]==false) { ?>
 	<div id="tabs">
 		<ul>
 			<?php if ($item->message) { ?>
