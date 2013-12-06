@@ -71,7 +71,6 @@ include('includes/extandbranch.php');
 	<div id="locator"></div>
 	<?php }; 
 	
-	if (!isset($_GET["embed"])||$_GET["embed"]==false) {
 	?>
 	<script type="text/javascript" charset="utf-8">
 		var data = <?php echo json_encode($item); ?>;		
@@ -114,6 +113,6 @@ include('includes/extandbranch.php');
 				return false;
 			});
 		</script>
-		<?php page_footer(); } ?>
+		<?php if (!isset($_GET["embed"])||$_GET["embed"]==false) page_footer();  ?>
 </body>
 </html>
