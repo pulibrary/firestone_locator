@@ -71,7 +71,7 @@ include('includes/extandbranch.php');
 	<div id="locator"></div>
 	<?php }; 
 	
-	if (!isset($_POST["embed"])||$_POST["embed"]==false) {
+	if (!isset($_GET["embed"])||$_GET["embed"]==false) {
 	?>
 	<script type="text/javascript" charset="utf-8">
 		var data = <?php echo json_encode($item); ?>;		
