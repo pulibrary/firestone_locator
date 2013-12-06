@@ -113,7 +113,7 @@ function locator(elementId, data, env) {
 	var floorPlan = canvas.image("images/"+env+"/"+data.lc+"/"+data.image.replace(".SWF", ".png"),
 	 								data.shift_x, data.shift_y,
 	 								fpSize.width * data.scale_x, fpSize.height * data.scale_y);
-	var legend = canvas.image("images/"+env+"/"+data.lc+"/legend.png",
+	var legend = canvas.image("images/"+env+"/"+data.lc+"/legend.PNG",
 	 								0, parseInt(data.shift_y) + fpSize.height * data.scale_x,
 									746, 56);
 	var textBox = canvas.rect(15, 15, 120, 80);
