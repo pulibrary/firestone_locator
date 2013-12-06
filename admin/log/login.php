@@ -4,7 +4,7 @@ phpCAS::setDebug("/tmp/cas.log");
 phpCAS::client(CAS_VERSION_2_0,'fed.princeton.edu',443,'cas');
 // force CAS authentication
 phpCAS::setNoCasServerValidation();
-#phpCAS::setFixedServiceURL(BASE_URL."admin");
+phpCAS::setFixedServiceURL(BASE_URL."admin");
 
 if (!phpCAS::checkAuthentication () ) {
 	phpCAS::forceAuthentication();
