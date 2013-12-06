@@ -16,6 +16,7 @@ include('includes/extandbranch.php');
 <?php styles_public(); ?>
 </head>
 <body>
+	<?php if (!isset($_POST["embed"])||$_POST["embed"]==false) { ?>
 	<div id="tabs">
 		<ul>
 			<?php if ($item->message) { ?>
@@ -57,6 +58,7 @@ include('includes/extandbranch.php');
 			</form>
 		</div>
 	</div>
+	}
 	<?php 	
 	if ($item->external === true) {
 		loadExternal();
@@ -67,7 +69,10 @@ include('includes/extandbranch.php');
 	} else if ($item->designated === true) {
 		?>
 	<div id="locator"></div>
-	<?php }; ?>
+	<?php }; 
+	
+	if (!isset($_POST["embed"])||$_POST["embed"]==false) {
+	?>
 	<script type="text/javascript" charset="utf-8">
 		var data = <?php echo json_encode($item); ?>;		
 			if ($("#locator").length != 0)
@@ -109,6 +114,7 @@ include('includes/extandbranch.php');
 				return false;
 			});
 		</script>
+		<?php } ?>
 <?php page_footer(); ?>
 </body>
 </html>
