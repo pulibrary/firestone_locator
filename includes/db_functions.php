@@ -65,6 +65,7 @@ function move_files() {
 	$image_selects[] = "SELECT DISTINCT Image_cn from lctr_Octavos_cn order by Image_cn";
 	$image_selects[] = "SELECT DISTINCT Image_cn from lctr_Oversize_cn order by Image_cn";
 	$image_selects[] = "SELECT DISTINCT Image_cn from lctr_Collections_cn order by Image_cn";
+	#$image_selects[] = "SELECT DISTINCT Image_cn from lctr_Coordinates_cn order by Image_cn";
 	foreach ($image_selects as $imageSQL) {
 		if ($fileResult = $dbconnects["stage"]->query($imageSQL)) {
 			$i = 1;
@@ -107,6 +108,17 @@ function move_files() {
 				}
 			}
 		}
+		foreach (glob("../images/stage/f/legend*") as $legendFile) {
+			$lf = pathinfo($legendFile);
+			if (!copy("../images/stage/f/".$lf["basename"], "../images/production/f/$".$lf["basename"])) {
+				$error = true;
+				$j++;
+				$errors .= "<li>".$lf["basename"]." copy failed</li>\n";
+			} else {
+				$i++;
+			}
+		}
+		
 		if ($error) {
 			echo "<div class='messages error'><div class='message-icon'><i class='fa fa-exclamation-triangle' /></div><div class='message'>$j files were not copied from stage to production.<ul>$errors</ul></div></div>";
 		}
