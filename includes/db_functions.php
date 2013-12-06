@@ -102,7 +102,7 @@ function move_files() {
 				if (!copy("../images/stage/f/".$filename["filename"].".png", "../images/production/f/".$filename["filename"].".png")) {
 					$error=true;
 					$errors .= "<li>".$filename["filename"].".PNG copy failed</li>\n";
-				
+					$j++;
 				} else {
 					$i++;
 				}
