@@ -164,9 +164,8 @@ if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
 
 						<div align="left" class="input">
 							<div align="center">
-								<input name="message" type="text" id="message"
-									value="<?php if(isset($_GET['c'])) echo $_GET['c']; ?>"
-									size="70">
+								<textarea name="message" id="message"
+					rows="4" maxlength="1000" cols="100"><?php if(isset($_GET["c"])) echo $_GET['c']; ?></textarea>
 							</div>
 						</div>
 					</td>
