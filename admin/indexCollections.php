@@ -67,7 +67,7 @@ if (isset($_GET['order'])) {
 	$query_rsAdminCallNum = "SELECT * FROM lctr_Collections_cn ORDER BY $order ASC";
 } else {
 	$order="";
-	$query_rsAdminCallNum = "SELECT * FROM lctr_Collections_cn ORDER BY LocationDisplayName_cn ASC";
+	$query_rsAdminCallNum = "SELECT * FROM lctr_Collections_cn ORDER BY left_cn ASC";
 }
 if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
 	$row_rsAdminCallNum = $rsAdminCallNum->fetch_assoc();
@@ -218,8 +218,8 @@ $(document).ready(function() {
 				</td>
 
 
-				<td class="input"><input name="message" type="text" id="message"
-					value="<?php if(isset($_GET["g"])) echo $_GET['g']; ?>" size="35"></td>
+				<td class="input"><textarea name="message" id="message"
+					rows="4" maxlength="1000" cols="60"><?php if(isset($_GET["g"])) echo $_GET['g']; ?></textarea></td>
 				<td>
 					<div align="center" class="input">
 					<input type="hidden" name="site" id="site" value="lctr_Collections_cn" />
