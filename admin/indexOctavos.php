@@ -70,7 +70,7 @@ if (isset($_GET['order'])&&$_GET["order"]!="") {
 	$query_rsAdminCallNum = "SELECT * FROM lctr_Octavos_cn ORDER BY $order ASC";
 } else {
 	$order="";
-	$query_rsAdminCallNum = "SELECT * FROM lctr_Octavos_cn ORDER BY LocationDisplayName_cn ASC";
+	$query_rsAdminCallNum = "SELECT * FROM lctr_Octavos_cn ORDER BY left_cn ASC";
 }
 
 if ($rsAdminCallNum = $dbconnects["stage"]->query($query_rsAdminCallNum) ) {
@@ -230,9 +230,8 @@ $(document).ready(function() {
 					</td>
 
 
-					<td class="input"><input name="message" type="text" id="message"
-						value="<?php if (isset($reqRecord['message_cn'])) echo $reqRecord['message_cn']; ?>"
-						size="35"></td>
+					<td class="input"><textarea name="message" id="message"
+					rows="4" maxlength="1000" cols="60"><?php if (isset($reqRecord['message_cn'])) echo $reqRecord['message_cn']; ?></textarea></td>
 					<td>
 						<div align="center" class="input">
 							<input name="x_point_cn" type="hidden" id="x_point_cn"

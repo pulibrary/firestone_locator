@@ -219,7 +219,7 @@ $(document).ready(function() {
 
 
 				<td class="input"><textarea name="message" id="message"
-					rows="4" maxlength="255" cols="60"><?php if(isset($_GET["g"])) echo $_GET['g']; ?></textarea></td>
+					rows="4" maxlength="1000" cols="60"><?php if(isset($_GET["g"])) echo $_GET['g']; ?></textarea></td>
 				<td>
 					<div align="center" class="input">
 					<input type="hidden" name="site" id="site" value="lctr_Collections_cn" />
