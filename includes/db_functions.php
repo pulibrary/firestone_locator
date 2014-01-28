@@ -129,6 +129,7 @@ function move_files() {
 }
 function db_backuplist() {
 	$files = scandir("../sql-files", 1);
+        //usort($files ,"sort_by_mtime");
 	$prod_files = array();
 	$stage_files = array();
 	foreach ($files as $fil) {
@@ -148,7 +149,8 @@ function db_backuplist() {
 	echo "<label>Backup: </label> <select name='file' id='prod_select'>\n";
 	echo "<option value='' selected='selected'>Select</option>\n";
 	$i=0;
-	for ($i=0;$i<10;$i++) {
+	print_r($prod_files);
+	for ($i=0;$i<1000;$i++) {
 		if (isset($prod_filename[$i])) {
 			echo "<option value='$prod_filename[$i]'>$prod_files[$i]</option>\n";
 		} else {
@@ -164,7 +166,7 @@ function db_backuplist() {
 	echo "<label>Backup: </label> <select name='file' id='stage_select'>\n";
 	echo "<option value='' selected='selected'>Select</option>\n";
 	$i=0;
-	for ($i=0;$i<10;$i++) {
+	for ($i=0;$i<1000;$i++) {
 		if (isset($stage_filename[$i])) {
 			echo "<option value='$stage_filename[$i]'>$stage_files[$i]</option>\n";
 		} else {
@@ -176,5 +178,12 @@ function db_backuplist() {
 	
 }
 
-
+function sort_by_mtime($file1,$file2) {
+	$time1 = filemtime($file1);
+	$time2 = filemtime($file2);
+	if ($time1 == $time2) {
+    		return 0;
+	}
+	return ($time1 < $time2) ? 1 : -1;
+}
 ?>
