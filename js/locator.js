@@ -25,13 +25,13 @@ function locator(elementId, data, env) {
 				if (grid[i][j]==0) {
 				    rect.attr("fill", "red");//not accessible
 				} else if (grid[i][j] == 1) {
-				    rect.attr("fill", "green");  //major hallway                  
+				    rect.attr("fill", "green");  //major hallway
 				} else if (grid[i][j] == 2) {
-				    rect.attr("fill", "blue");   //   hallway                                               
+				    rect.attr("fill", "blue");   //   hallway
 				} else if (grid[i][j] == 3) {
-				    rect.attr("fill", "yellow");  //stacks                          
+				    rect.attr("fill", "yellow");  //stacks
 				}
-				rect.attr("opacity", opacity);   
+				rect.attr("opacity", opacity);
 			}
 		}
 	}
@@ -57,7 +57,7 @@ function locator(elementId, data, env) {
 			i++;
 		};
 		recursiveDraw();
-	
+
 		return lines;
 	}
 
@@ -88,11 +88,11 @@ function locator(elementId, data, env) {
 
 	var fpSizes = {
 		"1" : { width: 688, height: 487},
-		"2" : { width: 714, height: 524},
-		"3" : { width: 620, height: 539},
-		"A" : { width: 635, height: 481},
-		"B" : { width: 610, height: 565},
-		"C" : { width: 647, height: 501},
+		"2" : { width: 572, height: 528},
+		"3" : { width: 557, height: 523},
+		"A" : { width: 636, height: 495},
+		"B" : { width: 608, height: 571},
+		"C" : { width: 636, height: 494},
 	};
 	var fpSize = fpSizes[data.location.substring(0,1)];
 
@@ -108,7 +108,7 @@ function locator(elementId, data, env) {
 	var xTileEnd = Math.round((data.end_x-5)/10);
 	var yTileEnd = Math.round((data.end_y-5)/10);
 
-	
+
 	var canvas = Raphael("locator", 750, 565+56);
 	var floorPlan = canvas.image("images/"+env+"/"+data.lc+"/"+data.image.replace(".SWF", ".png"),
 	 								data.shift_x, data.shift_y,
@@ -157,14 +157,14 @@ function locator(elementId, data, env) {
 				posy = event.clientY + document.body.scrollTop
 					+ document.documentElement.scrollTop;
 			}
-			
+
 			this.attr({cx: snapX(posx-22), cy: snapY(posy-60), opacity: 1});
 
 			var	xTileStart = Math.round((posx-22-tileWidth/2)/tileWidth);
 			var	yTileStart = Math.round((posy-60-tileHeight/2)/tileHeight);
 			var path = findPath(grid, yTileStart, xTileStart, yTileEnd, xTileEnd);
 			removeLines(lines);
-			
+
 			if (path != null) {
 		 		lines = drawPath(canvas, path);
 				pointer.attr({fill: "90-#387C44-#52D017"});
@@ -175,3 +175,4 @@ function locator(elementId, data, env) {
 	}
 	pointer.drag(dndFunctions.move, dndFunctions.start, dndFunctions.up);
 }
+
