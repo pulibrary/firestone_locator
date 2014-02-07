@@ -129,7 +129,6 @@ function move_files() {
 }
 function db_backuplist() {
 	$files = scandir("../sql-files", 1);
-        //usort($files ,"sort_by_mtime");
 	$prod_files = array();
 	$stage_files = array();
 	foreach ($files as $fil) {
@@ -149,7 +148,6 @@ function db_backuplist() {
 	echo "<label>Backup: </label> <select name='file' id='prod_select'>\n";
 	echo "<option value='' selected='selected'>Select</option>\n";
 	$i=0;
-	print_r($prod_files);
 	for ($i=0;$i<1000;$i++) {
 		if (isset($prod_filename[$i])) {
 			echo "<option value='$prod_filename[$i]'>$prod_files[$i]</option>\n";
