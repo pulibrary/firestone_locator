@@ -3,7 +3,7 @@
  * DB Config 
  *
  */
-include("db_config.php");
+include_once("db_config.php");
 function db_backup($env="stage") {
 	global $dbconnects, $db_settings, $db_tools;
 	
