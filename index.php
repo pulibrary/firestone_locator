@@ -1,9 +1,9 @@
 <?php
-include('includes/db_config.php');
-include('includes/layout.php');
+require_once('includes/db_config.php');
+require_once('includes/layout.php');
 
-include('includes/item.php');
-include('includes/extandbranch.php');
+require_once('includes/item.php');
+require_once('includes/extandbranch.php');
 
 ?>
 <!DOCTYPE html>
