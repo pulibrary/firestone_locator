@@ -9,6 +9,7 @@ require_once('includes/extandbranch.php');
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="x-ua-compatible" content="IE=Edge">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Princeton University | Library Locator</title>
 
