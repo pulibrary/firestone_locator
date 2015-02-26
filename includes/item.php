@@ -21,7 +21,7 @@ if (strpos($_GET['id'], 'dedupmrg') === false) {
 
 } else {
 	$chd=curl_init();
-	curl_setopt($chd,CURLOPT_URL,"http://libwebprod.princeton.edu/searchit/record/".$_GET["id"].".json");
+	curl_setopt($chd,CURLOPT_URL,"http://library.princeton.edu/searchit/record/".$_GET["id"].".json");
 	curl_setopt($chd,CURLOPT_RETURNTRANSFER, true);
 	$result = curl_exec($chd);
 	curl_close($chd);
@@ -177,7 +177,14 @@ if (isset($firestone_array[$index]->call_display)) {
 $item->info = str_replace("\"","&quot;",$title) . $author  . $status . $multiple. '<br />' . '<br />' . $firestone_array[$index]->display . " " . $item->call_display . '<br />' . $firestone_array[0]->policy . '<br />';
 
 $item->id = $id;
-$item->callnum = $callnum;
+
+#/(^[A-Z].+\d)q(\s.+/)
+print_r($callnum);
+if (preg_match('/^([A-Z]{2}.+\d\sQ)\s(.+)/', $callnum, $matches)) {
+	$item->callnum = $matches[1].$string_oversize;
+} else {
+	$item->callnum = $callnum;
+}
 
 $item->lc = $location_code;
 $item->status = $status;
@@ -292,9 +299,8 @@ function RangeLocation(){
 
 	//default set to regular collection
 	$collection = "Octavos";
-
 	//Check for oversize collection
-	$oversize_key = array("q", "f", "e");
+	$oversize_key = array("q"); # , "f", "e");
 	$lastindex = strlen($item->callnum);
 	if ($lastindex!=0) {
 		$last = $item->callnum[$lastindex-1];
@@ -304,6 +310,7 @@ function RangeLocation(){
 			}
 		}
 	}
+
 	$lc = $item->lc;
 	if ($lc == "fnc")
 		$lc = "f";
