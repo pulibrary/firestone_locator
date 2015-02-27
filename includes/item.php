@@ -178,8 +178,6 @@ $item->info = str_replace("\"","&quot;",$title) . $author  . $status . $multiple
 
 $item->id = $id;
 
-#/(^[A-Z].+\d)q(\s.+/)
-print_r($callnum);
 if (preg_match('/^([A-Z]{2}.+\d\sQ)\s(.+)/', $callnum, $matches)) {
 	$item->callnum = $matches[1].$string_oversize;
 } else {
