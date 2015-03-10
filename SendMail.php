@@ -6,7 +6,7 @@
 	$bib     = trim($_POST['bib']);
 	//refdesk@princeton.edu 
 	//$to 		= "jlogan@princeton.edu,refdesk@princeton.edu,kr2@princeton.edu";
-        $to             = "refdesk@princeton.edu";
+  $to       = "refdesk@princeton.edu";
 	$subject 	= "Locator Comment";
 	$body 		= "Sender: $sender \n Contact info: $email \n Comment: $comment \n Item bib: $bib";
 

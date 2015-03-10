@@ -49,6 +49,7 @@ require_once('includes/extandbranch.php');
 		</div>
 		<div id="contact-us">
 			<button class="ui-icon ui-icon-close">Close Panel</button>
+			<!--
 			<form id="contact-form" action="SendMail.php" method="post">
 				Name:<br /> <input type="text" name="name" /><br /></br> E-mail:<br />
 				<input type="text " name="email"><br /> <br /> Comment:<br />
@@ -57,6 +58,16 @@ require_once('includes/extandbranch.php');
 					value="<?php echo $_REQUEST['id'] ?>" name="bib" /> <input
 					type="submit" name="submit" value="Send" />
 			</form>
+			-->
+			<?php $id = $_REQUEST['id'] ?>
+			<?php if (!is_numeric($id)) {
+				$id = null;
+			} else {
+				$id = urlencode($id);
+			}
+			?>
+			<p><a href="https://library.princeton.edu/help/e-mail?id=<?php echo $id; ?>">Contact the Library
+			About this Record.</a></p> 
 		</div>
 	</div>
 	<?php } ?>
