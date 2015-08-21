@@ -88,7 +88,7 @@ function locator(elementId, data, env) {
 
 	var fpSizes = {
 		"1" : { width: 688, height: 487},
-		"2" : { width: 572, height: 528},
+		"2" : { width: 549, height: 528},
 		"3" : { width: 557, height: 523},
 		"A" : { width: 636, height: 495},
 		"B" : { width: 608, height: 571},
