@@ -92,8 +92,9 @@ function locator(elementId, data, env) {
 		"3" : { width: 557, height: 523},
 		"A" : { width: 636, height: 495},
 		"B" : { width: 608, height: 571},
-		"C" : { width: 636, height: 494},
+		"C" : { width: 636, height: 554},
 	};
+	// old c 636 x 4994
 	var fpSize = fpSizes[data.location.substring(0,1)];
 
 	var gridHeight = 55;
