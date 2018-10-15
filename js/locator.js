@@ -87,12 +87,17 @@ function locator(elementId, data, env) {
 	}
 
 	var fpSizes = {
-		"1" : { width: 688, height: 487},
+		//"1" : { width: 688, height: 487},
+		//"1" : { width: 763, height: 493},
+		"1" : { width: 757, height: 528},
 		"2" : { width: 549, height: 528},
 		"3" : { width: 557, height: 523},
-		"A" : { width: 636, height: 495},
-		"B" : { width: 608, height: 571},
-		"C" : { width: 636, height: 554},
+		//"A" : { width: 636, height: 495},
+		"A" : { width: 615, height: 489},
+		"B" : { width: 627, height: 571},
+		//"B" : { width: 565, height: 515},
+		//"C" : { width: 591, height: 459},
+		"C" : { width: 677, height: 545},
 	};
 	// old c 636 x 4994
 	var fpSize = fpSizes[data.location.substring(0,1)];

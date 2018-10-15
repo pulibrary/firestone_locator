@@ -533,7 +533,7 @@ function loadError($msg=""){
 		<tr>
 			<td width="600" valign="top"><?php echo "<p>Please consult a member of the Library staff for help in locating this item, or send a copy of the catalog record to ";
 	
-			?> <a href=mailto:refdesk@princeton.edu>refdesk@princeton.edu</a> <?php
+			?> <a href=mailto:fstcirc@princeton.edu>fstcirc@princeton.edu</a> <?php
 	
 			echo " .</p><p> Please use the <a href=\"http://libserv5.princeton.edu/requests/index.php?bib=".$_GET["id"]."\" target=\"_blank\">In Process Request</a> service if the item has no call number, is \"on order\", or is \"in the pre-order process\". </p>" . '<p>' . "$msg<br>";
 	
