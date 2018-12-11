@@ -2,13 +2,8 @@ name: firestone-book-locater
 recipe: lamp
 config:
   webroot: .
-  php: '5.5'
+  php: '7.2'
 services:
-  html:
-    type: apache:2.2
-    ssl: false
-    ports:
-      - '8081:80'
   database:
     type: mariadb
     creds:

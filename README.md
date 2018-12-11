@@ -27,3 +27,4 @@ A .lando.yml file is provided - You will need to install Lando: https://docs.dev
 ```http://localhost:32807/```
 8. Application route will be http://localhost:32807/
 9. Admin route will be http://localhost:32807/admin.
+10. Add current map image set. Currently needs to be manually pulled from production application. Locate images in ```images/production/f``` and ```images/stage/f```.
