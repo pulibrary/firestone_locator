@@ -1,0 +1,18 @@
+name: firestone-book-locater
+recipe: lamp
+config:
+  webroot: .
+  php: '7.2'
+services:
+  database:
+    type: mariadb
+    creds:
+      database: locator_production
+      user: locator
+      password: locator
+  database1:
+    type: mariadb
+    creds:
+      database: locator_stage
+      user: locator
+      password: locator
