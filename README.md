@@ -4,7 +4,7 @@
 Location Mapper for Firestone Library
 
 Current Requirements
-1. PHP < 5.6 (Currently)
+1. PHP <= 7.2
 2. Maridb/Mysql
 
 ## Local Development
