@@ -3,7 +3,7 @@
  * DB Config
  * - Copy to db_config.php and configure the below information
  */
-$hostname_Locator = "database1";
+$hostname_Locator = "database";
 $hostname_Locator_production = "database"; /* Production is the core server this data should send the data to*/
 $username_Locator = "locator";
 $password_Locator = "locator";
