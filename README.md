@@ -16,8 +16,10 @@ A .lando.yml file is provided - You will need to install Lando: https://docs.dev
 2. ```cd firestone_locator```
 3. Start up app lando ```lando start``` (make sure Docker is running)
 4. Create and seed the staging and production databases
-   - ```lando db-import locator.seed.sql.gz --host database```
-   - ```lando db-import locator.seed.sql.gz --host database1```
+   - ```gzip -d locator.seed.sql.gz```
+   - ```lando db-import locator.seed.sql --host database```
+   - ```lando mysql locator_stage```
+   - In mysql shell type ```SET autocommit=0 ; source locator.seed.sql ; COMMIT ;```
 5. Create a db config for your current environment
    - ```cd includes```
    - ```cp db_lando_config.php db_config.php```

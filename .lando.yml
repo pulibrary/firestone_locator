@@ -10,9 +10,5 @@ services:
       database: locator_production
       user: locator
       password: locator
-  database1:
-    type: mariadb
-    creds:
-      database: locator_stage
-      user: locator
-      password: locator
+    run_as_root:
+      - mysql -uroot -e "CREATE DATABASE IF NOT EXISTS locator_stage; GRANT ALL PRIVILEGES ON locator_stage.* TO 'locator'@'%' IDENTIFIED by 'locator';"
