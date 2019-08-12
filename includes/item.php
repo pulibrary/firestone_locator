@@ -15,6 +15,17 @@ if (isset($_GET['loc'])) {
 } else {
 	$loc = "";
 }
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+} else {
+	$id = "";
+}
+if (isset($_GET['callnum'])) {
+	$callnum = $_GET['callnum'];
+} else {
+	$callnum = "";
+}
+
 if (strpos($_GET['id'], 'dedupmrg') === false) {
 	$id = (int)str_replace("PRN_VOYAGER","", $_GET["id"]);
 
@@ -59,12 +70,16 @@ require_once('XMLinfo.php');
 
 // Save all relevent information into one variable
 class item{
-	var $info, $id, $callnum, $call_display, $lc, $location, $fl, $image, $legend, $ref, $site, $charged, $status, $subject, $message;
+	var $id, $callnum, $call_display, $location;
 
-	var $floorDB, $grid, $start_x, $start_y, $end_x, $end_y, $shift_x, $shift_y, $scale_x, $scale_y;
+	// var $floorDB, $grid, $start_x, $start_y, $end_x, $end_y, $shift_x, $shift_y, $scale_x, $scale_y;
 
-	var $external, $branch, $designated, $tmp_location="";
+	var $tmp_location="";
 }
+
+// class item {
+// 	var $id, $location, $tmp_location="";
+// }
 
 $item = new item();
 
@@ -74,14 +89,14 @@ for($x = 0; $x < count($firestone_array); $x++){
 
 	if ($loc == $firestone_array[$x]->location){
 		global $index, $hits;
-			
+
 		// If temporary location exists, check if user specified which copy they are searching for
 		if (($set_hit > 0)&&($hits == $set_hit-1)) {
 			$hits++;
 			$index = $x;
 			break;
 		}
-			
+
 		// If multiple items are present in location, display items that are currently not charged
 		else if ($hits > 0) {
 			if (strstr($firestone_array[$x]->status, "Not")){
@@ -89,7 +104,7 @@ for($x = 0; $x < count($firestone_array); $x++){
 				$index = $x;
 			}
 		}
-			
+
 		// If only one copy exists
 		else {
 			$hits++;
@@ -120,11 +135,11 @@ if (($hits > 1) || ($set_hit > 0)) {
 	else {
 
 		displayMultipleCopies($firestone_array, $index);
-			
+
 	}
 }
 
-$callnum = 	 $firestone_array[$index]->call;
+// $callnum = 	 $firestone_array[$index]->call;
 
 // Check for temporary locations
 if (isset($firestone_array[$index]->tmp_location) &&  $firestone_array[$index]->tmp_location != "")
@@ -133,28 +148,6 @@ else $location_code = $firestone_array[$index]->location;
 
 // Check policy
 include('XMLpolicy.php');
-
-// Display title information
-if ($firestone_array[0]->title > ""){
-	$title = $firestone_array[0]->title;
-
-	if (strlen($title) > 150) {
-		$title = substr($title, 0, 150);
-		$title = $title . "...";
-	}
-
-	$title = str_replace("/", "", $title);
-
-	$title = "<b>Title:</b> " . $title . '<br>';
-	//echo $title;
-}
-
-// Display author information
-if ($firestone_array[0]->author != ""){
-	$author = "<b>Author:</b> " . $firestone_array[0]->author . '<br>';
-} else {
-	$author = "";
-}
 
 // Display item status: charged / not-charged
 if ($firestone_array[$index]->status != ""){
@@ -174,9 +167,9 @@ if (isset($firestone_array[$index]->call_display)) {
 } else {
 	$item->call_display = "";
 }
-$item->info = str_replace("\"","&quot;",$title) . $author  . $status . $multiple. '<br />' . '<br />' . $firestone_array[$index]->display . " " . $item->call_display . '<br />' . $firestone_array[0]->policy . '<br />';
 
 $item->id = $id;
+$item->location = $loc;
 
 if (preg_match('/^([A-Z]{2}.+\d\sQ)\s(.+)/', $callnum, $matches)) {
 	$item->callnum = $matches[1].$string_oversize;
@@ -185,23 +178,12 @@ if (preg_match('/^([A-Z]{2}.+\d\sQ)\s(.+)/', $callnum, $matches)) {
 }
 
 $item->lc = $location_code;
-$item->status = $status;
 
 // Program error check
 if ((count($firestone_array) >= 1 ) && ($index < count($firestone_array))){
 
 	// Find location of item
-	if(BranchLibrary())  {
-	}
-	else if(noLocation()){
-	}
-
-	else if(DesignatedLocation()) {
-		getFloorStats();
-		compileInfo();
-	}
-
-	else if (RangeLocation()) {
+	if (RangeLocation()) {
 		getFloorStats();
 		compileInfo();
 	}
@@ -236,58 +218,6 @@ function BranchLibrary() {
 		return false;
 	}
 
-}
-
-//Check if collection has no designated location----------------------------------------
-function  noLocation() {
-	global $item, $Locator, $dbconnects;
-
-	$sql = "SELECT * FROM lctr_External_cn WHERE left_cn = '$item->lc'";
-
-	if ($subResult = $dbconnects["current"]->query($sql))  {
-		if ($subResult->num_rows > 0) {
-			while ($row = $subResult->fetch_array()) {
-				$item->info = $item->info . '<br /><br />' .$row['message_cn'];
-				$item->site = $row['site_cn'];
-
-			}
-
-			$item->external = true;
-		}
-		return $subResult->num_rows;
-	} else {
-		$error = $dbconnects["current"]->error;
-		return false;
-	}
-}
-
-//Check if collection has designated location------------------------------------
-function DesignatedLocation() {
-	global $item, $Locator, $dbconnects;
-		
-	$sql = "SELECT * FROM lctr_Collections_cn WHERE left_cn = '$item->lc'";
-
-	if ($subResult = $dbconnects["current"]->query($sql))  {
-		if ($subResult->num_rows > 0) {
-			while ($row = $subResult->fetch_array()) {
-
-				$item->lc       = $row['BuildingCode_cn'];
-				$item->location = $row['LocationMap_cn'];
-				$item->image    = $row['Image_cn'];
-				$item->floorDB  = $row['FloorDB_cn'];
-				$item->end_x    = $row['x_point_cn'];
-				$item->end_y    = $row['y_point_cn'];
-				$item->message = $row['message_cn'];
-				$item->subject = $row['LocationDisplayName_cn'];
-			}
-
-			$item->designated = true;
-		}
-		return $subResult->num_rows;
-	} else {
-		$error = $dbconnects["current"]->error;
-		return false;
-	}
 }
 
 //Check if collection is located in Firestone -------------------------------------
@@ -330,7 +260,7 @@ function RangeLocation(){
 				$item->message        = $row['message_cn'];
 
 			}
-				
+
 			// Pitney collection has special case!
 			$findme   = "PITN";
 			$pos = strpos($item->callnum, $findme);
@@ -342,7 +272,6 @@ function RangeLocation(){
 				//$item->image = "B-12-F.SWF";
 			}
 
-			$item->designated = true;
 		}
 		return $subResult->num_rows;
 	} else {
@@ -356,7 +285,7 @@ function RangeLocation(){
 //Compile information for index card -------------------------------------
 function compileInfo(){
 	global $item, $Locator, $dbconnects;
-	
+
 
 	$content_var = array();
 	$num = 0;
@@ -373,25 +302,7 @@ function compileInfo(){
 			$content_var[$num] = str_replace("#subject",  $item->subject,  $content_var[$num]);
 			$num++;
 		}
-		// Set text if item is not charged (available)
-		if (strstr($item->status, "Not")) {
-			$item->charged = "false";
-			$item->info .= "<br \>" . $content_var[0];
-		}
-		
-		// Set text if item has no status, and there is no message
-		else if ($item->status == "" && $item->message == "") {
-			$item->charged = "false";
-			$item->info .= "<br \>" . $content_var[1];
-		}
-		
-		// Set text if item is charged (not available)
-		else if ($item->status != ""){
-			$item->charged = "true";
-			$item->info .= "<br \>" . $content_var[2];;
-		}
-		
-		$item->info .= "<br \>" . $item->message;
+
 		//$item->info = flash_encode($item->info);
 	} else {
 		return false;
@@ -405,7 +316,7 @@ function compileInfo(){
 function getFloorStats() {
 
 	global $item, $Locator, $dbconnects;
-	
+
 	// Retreive information nec. for building map array
 	$sql = "SELECT * FROM lctr_Coordinates_cn WHERE FloorDB_cn = '$item->floorDB'";
 
@@ -532,11 +443,11 @@ function loadError($msg=""){
 		</tr>
 		<tr>
 			<td width="600" valign="top"><?php echo "<p>Please consult a member of the Library staff for help in locating this item, or send a copy of the catalog record to ";
-	
+
 			?> <a href=mailto:fstcirc@princeton.edu>fstcirc@princeton.edu</a> <?php
-	
+
 			echo " .</p><p> Please use the <a href=\"http://libserv5.princeton.edu/requests/index.php?bib=".$_GET["id"]."\" target=\"_blank\">In Process Request</a> service if the item has no call number, is \"on order\", or is \"in the pre-order process\". </p>" . '<p>' . "$msg<br>";
-	
+
 			echo '</p>' ;
 			?>
 			</td>
@@ -547,7 +458,7 @@ function loadError($msg=""){
 			<td valign="top"><a
 				href="http://library.princeton.edu/about/locations">View map of
 					campus libraries</a></td>
-	
+
 		</tr>
 	</table>
 <?php
