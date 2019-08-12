@@ -70,16 +70,12 @@ require_once('XMLinfo.php');
 
 // Save all relevent information into one variable
 class item{
-	var $id, $callnum, $call_display, $location;
-
+	var $id, $callnum, $location;
+	// var $call_display;
 	// var $floorDB, $grid, $start_x, $start_y, $end_x, $end_y, $shift_x, $shift_y, $scale_x, $scale_y;
 
-	var $tmp_location="";
+	// var $tmp_location="";
 }
-
-// class item {
-// 	var $id, $location, $tmp_location="";
-// }
 
 $item = new item();
 
@@ -147,7 +143,7 @@ if (isset($firestone_array[$index]->tmp_location) &&  $firestone_array[$index]->
 else $location_code = $firestone_array[$index]->location;
 
 // Check policy
-include('XMLpolicy.php');
+// include('XMLpolicy.php');
 
 // Display item status: charged / not-charged
 if ($firestone_array[$index]->status != ""){
