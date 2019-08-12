@@ -5,21 +5,11 @@ if ($id > 0){
 
 	$firestone_array = array();
 
-	$xml_location_key = "*COLLECTION*RECORD*MFHD*LOCATION_CODE";
-	$xml_call_display =  "*COLLECTION*RECORD*MFHD*DISPLAY_CALL_NO";
-	$xml_call_key = "*COLLECTION*RECORD*MFHD*NORMALIZED_CALL_NO";
-
-	$xml_title_key = "*COLLECTION*RECORD*BIB*TITLE_BRIEF";
-	$xml_display_key = "*COLLECTION*RECORD*MFHD*LOCATION_DISPLAY_NAME";
-	$xml_status_key = "*COLLECTION*RECORD*ITEM*ITEM_STATUS_DESC";
-	$xml_circ_policy = "*DOCUMENT*LOCINFO*CIRC_POLICY";
-	$xml_MFHD_A = "*COLLECTION*RECORD*MFHD*MFHD_ID";
-	$xml_MFHD_B = "*COLLECTION*RECORD*ITEM*MFHD_ID";
 	$xml_tmp_location = "*COLLECTION*RECORD*ITEM*TEMP_LOCATION_CODE";
 	$xml_tmp_display  = "*COLLECTION*RECORD*ITEM*TEMP_LOCATION_DISPLAY_NAME";
 
 	class xml_firestone{
-		var $location="", $call="", $title="", $display="", $status="", $policy="", $MFHD="", $tmp_location="", $tmp_display="";
+		var $tmp_location="", $tmp_display="";
 	}
 
 
@@ -44,10 +34,10 @@ if ($id > 0){
 		//echo "NEW: " . $current_tag . '<br />';
 		switch($current_tag){
 
-			case $xml_title_key:
-				//echo "TITLE: " . $data;
-				$firestone_array[0]->title = $firestone_array[0]->title . "" . $data;
-			break;
+			// case $xml_title_key:
+			// 	//echo "TITLE: " . $data;
+			// 	$firestone_array[0]->title = $firestone_array[0]->title . "" . $data;
+			// break;
 
 			case $xml_display_key:
 				$firestone_array[$counter]->display = $data;
@@ -61,9 +51,9 @@ if ($id > 0){
 			// 	$firestone_array[$counter]->author = $data;
 			// break;
 
-			case $xml_circ_policy:
-				$firestone_array[$counter]->policy = $data;
-			break;
+			// case $xml_circ_policy:
+			// 	$firestone_array[$counter]->policy = $data;
+			// break;
 
 			case $xml_call_key:
 				$firestone_array[$counter]->call = $data;
@@ -87,9 +77,9 @@ if ($id > 0){
 				}
 			break;
 
-			case $xml_status_key:
-				$firestone_array[$counter]->status = $data;
-			break;
+			// case $xml_status_key:
+			// 	$firestone_array[$counter]->status = $data;
+			// break;
 
 			case $xml_tmp_location:
 				$firestone_array[$counter]->tmp_location = $data;

@@ -81,59 +81,59 @@ $item = new item();
 
 $index = 0;
 // Iterate through all returned firestone records
-for($x = 0; $x < count($firestone_array); $x++){
-
-	if ($loc == $firestone_array[$x]->location){
-		global $index, $hits;
-
-		// If temporary location exists, check if user specified which copy they are searching for
-		if (($set_hit > 0)&&($hits == $set_hit-1)) {
-			$hits++;
-			$index = $x;
-			break;
-		}
-
-		// If multiple items are present in location, display items that are currently not charged
-		else if ($hits > 0) {
-			if (strstr($firestone_array[$x]->status, "Not")){
-				$hits++;
-				$index = $x;
-			}
-		}
-
-		// If only one copy exists
-		else {
-			$hits++;
-			$index = $x;
-		}
-	}
-}
-// If multiple copies exist in one permanent location
-if (($hits > 1) || ($set_hit > 0)) {
-
-	$loc_flag = true;
-
-	// Check if items have different temporary locations
-	for($x=0;$x<count($firestone_array);$x++){
-		if (($loc == $firestone_array[$x]->location)
-				&& ($firestone_array[$x]->tmp_location != "")){
-			$loc_flag = false;
-			break;
-		}
-	}
-
-	// If all copies exist in same location
-	if ($loc_flag) {
-		$multiple =  '<br>' . "At least one copy of this item may be available in " . $firestone_array[$index]->display.'<br>';
-	}
-
-	// If different copies have different locations
-	else {
-
-		displayMultipleCopies($firestone_array, $index);
-
-	}
-}
+// for($x = 0; $x < count($firestone_array); $x++){
+//
+// 	if ($loc == $firestone_array[$x]->location){
+// 		global $index, $hits;
+//
+// 		// If temporary location exists, check if user specified which copy they are searching for
+// 		if (($set_hit > 0)&&($hits == $set_hit-1)) {
+// 			$hits++;
+// 			$index = $x;
+// 			break;
+// 		}
+//
+// 		// If multiple items are present in location, display items that are currently not charged
+// 		else if ($hits > 0) {
+// 			if (strstr($firestone_array[$x]->status, "Not")){
+// 				$hits++;
+// 				$index = $x;
+// 			}
+// 		}
+//
+// 		// If only one copy exists
+// 		else {
+// 			$hits++;
+// 			$index = $x;
+// 		}
+// 	}
+// }
+// // If multiple copies exist in one permanent location
+// if (($hits > 1) || ($set_hit > 0)) {
+//
+// 	$loc_flag = true;
+//
+// 	// Check if items have different temporary locations
+// 	for($x=0;$x<count($firestone_array);$x++){
+// 		if (($loc == $firestone_array[$x]->location)
+// 				&& ($firestone_array[$x]->tmp_location != "")){
+// 			$loc_flag = false;
+// 			break;
+// 		}
+// 	}
+//
+// 	// If all copies exist in same location
+// 	if ($loc_flag) {
+// 		$multiple =  '<br>' . "At least one copy of this item may be available in " . $firestone_array[$index]->display.'<br>';
+// 	}
+//
+// 	// If different copies have different locations
+// 	else {
+//
+// 		displayMultipleCopies($firestone_array, $index);
+//
+// 	}
+// }
 
 // $callnum = 	 $firestone_array[$index]->call;
 
@@ -146,11 +146,11 @@ else $location_code = $firestone_array[$index]->location;
 // include('XMLpolicy.php');
 
 // Display item status: charged / not-charged
-if ($firestone_array[$index]->status != ""){
-	$status = "<b>Item status:</b> " . trim($firestone_array[$index]->status);
-} else {
-	$status = "";
-}
+// if ($firestone_array[$index]->status != ""){
+// 	$status = "<b>Item status:</b> " . trim($firestone_array[$index]->status);
+// } else {
+// 	$status = "";
+// }
 
 // Display multiple information
 if (!isset($multiple) ){
@@ -166,14 +166,13 @@ if (isset($firestone_array[$index]->call_display)) {
 
 $item->id = $id;
 $item->location = $loc;
+$item->lc = $loc;
 
 if (preg_match('/^([A-Z]{2}.+\d\sQ)\s(.+)/', $callnum, $matches)) {
 	$item->callnum = $matches[1].$string_oversize;
 } else {
 	$item->callnum = $callnum;
 }
-
-$item->lc = $location_code;
 
 // Program error check
 if ((count($firestone_array) >= 1 ) && ($index < count($firestone_array))){
@@ -205,8 +204,6 @@ function BranchLibrary() {
 				$item->ref = $row['MapNumber_cn'];
 				$item->site = $row['Website_cn'];
 			}
-
-			$item->branch = true;
 		}
 		return $subResult->num_rows;
 	} else {
