@@ -4,7 +4,7 @@
 if ($id > 0){
 
 	$firestone_array = array();
-		
+
 	$xml_location_key = "*COLLECTION*RECORD*MFHD*LOCATION_CODE";
 	$xml_call_display =  "*COLLECTION*RECORD*MFHD*DISPLAY_CALL_NO";
 	$xml_call_key = "*COLLECTION*RECORD*MFHD*NORMALIZED_CALL_NO";
@@ -21,26 +21,26 @@ if ($id > 0){
 	class xml_firestone{
 		var $location="", $call="", $author="", $title="", $display="", $status="", $policy="", $MFHD="", $tmp_location="", $tmp_display="";
 	}
-	
-	
-	$counter = 0;	 
-	$firestone_array[$counter] = new xml_firestone();	
-	
+
+
+	$counter = 0;
+	$firestone_array[$counter] = new xml_firestone();
+
 	function startTag($parser, $data){
 		global $current_tag;
 		$current_tag .= "*$data";
 	}
-	
+
 	function endTag($parser, $data){
 		global $current_tag;
 		$tag_key = strrpos($current_tag, '*');
 		$current_tag = substr($current_tag, 0, $tag_key);
 	}
-	
+
 	function contents($parser, $data){
-		
+
 		global $firestone_array, $current_tag, $xml_call_display, $xml_display_key, $xml_location_key, $xml_author_key, $xml_title_key, $xml_call_key, $xml_status_key, $xml_circ_policy, $counter, $xml_MFHD_A, $xml_MFHD_B, $xml_tmp_location, $xml_tmp_display;
-		
+
 		//echo "NEW: " . $current_tag . '<br />';
 		switch($current_tag){
 
@@ -48,92 +48,88 @@ if ($id > 0){
 				//echo "TITLE: " . $data;
 				$firestone_array[0]->title = $firestone_array[0]->title . "" . $data;
 			break;
-			
+
 			case $xml_display_key:
 				$firestone_array[$counter]->display = $data;
 			break;
-						
-			case $xml_location_key:							
+
+			case $xml_location_key:
 				$firestone_array[$counter]->location = $data;
 			break;
-							
+
 			case $xml_author_key:
 				$firestone_array[$counter]->author = $data;
 			break;
-			
+
 			case $xml_circ_policy:
-				$firestone_array[$counter]->policy = $data; 
-			break;								
-			
+				$firestone_array[$counter]->policy = $data;
+			break;
+
 			case $xml_call_key:
 				$firestone_array[$counter]->call = $data;
-			break;	
-			
+			break;
+
 			case $xml_call_display:
 				$firestone_array[$counter]->call_display = $data;
-			break;		
-			
-			//MFHD ID number must be first line retrieved			
+			break;
+
+			//MFHD ID number must be first line retrieved
 			case $xml_MFHD_A:
 				$counter++;
 				$firestone_array[$counter]->MFHD= $data;
 			break;
-			
+
 			case $xml_MFHD_B:
-				for ($i=0; $i<count($firestone_array); $i++) { 
+				for ($i=0; $i<count($firestone_array); $i++) {
 					if ($firestone_array[$i]->MFHD == $data){
 						$counter = $i;
 					}
 				}
 			break;
-			
+
 			case $xml_status_key:
 				$firestone_array[$counter]->status = $data;
 			break;
-			
+
 			case $xml_tmp_location:
 				$firestone_array[$counter]->tmp_location = $data;
-			break;		
-			
+			break;
+
 			case $xml_tmp_display:
 				$firestone_array[$counter]->display = $data;
-			break;	
+			break;
 		}
 
 	}
     $url = (isset($_GET['catalog']) && $_GET['catalog'] == "test") ? "http://libweb5.princeton.edu/GetVoyRecTestCat/getvoyrec.aspx?item=1&bib=1&mfhd=1&id=" : "http://libweb5.princeton.edu/getvoyrec/getvoyrec.aspx?item=1&bib=1&mfhd=1&id=";
-    
+
 	$file = $url . $id;
 
 	$xml_parser = xml_parser_create();
 	xml_set_element_handler($xml_parser, "startTag", "endTag");
 	xml_set_character_data_handler($xml_parser, "contents");
-				
+
 	if ($file_stream = fopen($file, "r")) {
 	   while ($data = fread($file_stream, 4096)) {
-	
+
 		   $this_chunk_parsed = xml_parse($xml_parser, $data, feof($file_stream));
 		   if (!$this_chunk_parsed) {
 			   $error_code = xml_get_error_code($xml_parser);
 			   $error_text = xml_error_string($error_code);
 			   $error_line = xml_get_current_line_number($xml_parser);
-		
+
 			   $output_text = "Parsing problem at line $error_line: $error_text";
 			   die($output_text);
 		   }
 		}
-		
-	} 
+
+	}
 	else {
 		die("Can't open XML file.");
 	}
-	
+
 	xml_parser_free($xml_parser);
 	fclose($file_stream);
 }
 
 ?>
-
-
-
-
