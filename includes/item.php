@@ -137,10 +137,15 @@ $index = 0;
 
 // $callnum = 	 $firestone_array[$index]->call;
 
+$item->id = $id;
+$item->location = $loc;
+$item->lc = $loc;
+
 // Check for temporary locations
 if (isset($firestone_array[$index]->tmp_location) &&  $firestone_array[$index]->tmp_location != "")
 	$location_code = $firestone_array[$index]->tmp_location;
-else $location_code = $firestone_array[$index]->location;
+else $location_code = $loc;
+// else $location_code = $firestone_array[$index]->location;
 
 // Check policy
 // include('XMLpolicy.php');
@@ -163,10 +168,6 @@ if (isset($firestone_array[$index]->call_display)) {
 } else {
 	$item->call_display = "";
 }
-
-$item->id = $id;
-$item->location = $loc;
-$item->lc = $loc;
 
 if (preg_match('/^([A-Z]{2}.+\d\sQ)\s(.+)/', $callnum, $matches)) {
 	$item->callnum = $matches[1].$string_oversize;
@@ -429,11 +430,6 @@ function loadError($msg=""){
 	#include('../locInfo.php?$_GET[loc]');
 	?>
 	<table class="item_table" align="left">
-		<tr>
-			<td width="600" valign="top"><div id="info">
-					<?php echo $item->info; ?>
-				</div></td>
-		</tr>
 		<tr>
 			<td width="600" valign="top"><?php echo "<p>Please consult a member of the Library staff for help in locating this item, or send a copy of the catalog record to ";
 
