@@ -55,7 +55,7 @@ if (!isset($id)) {
 }
 
 // Retrieve item information from XML source
-require_once('XMLinfo.php');
+// require_once('XMLinfo.php');
 
 // Save all relevent information into one variable
 class item{
@@ -71,8 +71,6 @@ $item = new item();
 require_once('bibdata_info.php');
 
 $index = 0;
-var_dump($f_array);
-var_dump($firestone_array);
 $firestone_array = $f_array;
 
 // Iterate through all returned firestone records
@@ -138,7 +136,7 @@ if (isset($firestone_array[$index]->tmp_location) &&  $firestone_array[$index]->
 else $location_code = $firestone_array[$index]->location;
 
 // Check policy
-include('XMLpolicy.php');
+//include('XMLpolicy.php');
 
 // Display title information
 if ($firestone_array[0]->title > ""){
@@ -180,7 +178,7 @@ if (isset($firestone_array[$index]->call_display)) {
 } else {
 	$item->call_display = "";
 }
-$item->info = str_replace("\"","&quot;",$title) . $author  . $status . $multiple. '<br />' . '<br />' . $firestone_array[$index]->display . " " . $item->call_display . '<br />' . $firestone_array[0]->policy . '<br />';
+$item->info = str_replace("\"","&quot;",$title) . $author  . $status . $multiple. '<br />' . '<br />' . $item->call_display . '<br />';
 
 $item->id = $id;
 

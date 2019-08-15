@@ -4,7 +4,6 @@ require_once('includes/layout.php');
 
 require_once('includes/item.php');
 require_once('includes/extandbranch.php');
-var_dump($item);
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +17,7 @@ var_dump($item);
 </head>
 <body>
 	<?php if (!isset($_GET["embed"])||$_GET["embed"]==false) { ?>
-	<!--<div id="tabs">
+	<div id="tabs">
 		<ul>
 			<?php if ($item->message) { ?>
 			<li id="tab-message"><a href="#message">Messages</a></li>
@@ -69,7 +68,7 @@ var_dump($item);
 			<p><a href="https://library.princeton.edu/help/e-mail?id=<?php echo $id; ?>">Contact the Library
 			About this Record.</a></p>
 		</div>
-	</div>-->
+	</div>
 	<?php } ?>
 	<?php
 	if ($item->external === true) {
