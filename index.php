@@ -4,7 +4,6 @@ require_once('includes/layout.php');
 
 require_once('includes/item.php');
 require_once('includes/extandbranch.php');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,11 +66,11 @@ require_once('includes/extandbranch.php');
 			}
 			?>
 			<p><a href="https://library.princeton.edu/help/e-mail?id=<?php echo $id; ?>">Contact the Library
-			About this Record.</a></p> 
+			About this Record.</a></p>
 		</div>
 	</div>
 	<?php } ?>
-	<?php 	
+	<?php
 	if ($item->external === true) {
 		loadExternal();
 		showOtherItems($bibs, $locations, $loc);
@@ -81,14 +80,14 @@ require_once('includes/extandbranch.php');
 	} else if ($item->designated === true) {
 		?>
 	<div id="locator"></div>
-	<?php }; 
-	
+	<?php };
+
 	?>
 	<script type="text/javascript" charset="utf-8">
-		var data = <?php echo json_encode($item); ?>;		
+		var data = <?php echo json_encode($item); ?>;
 			if ($("#locator").length != 0)
 				locator("locator", data,'<?php echo $env; ?>');
-			
+
 			$( "#tabs" ).tabs({
 						collapsible: true,
 						selected: -1
@@ -121,7 +120,7 @@ require_once('includes/extandbranch.php');
 				$.post("SendMail.php", args, function(response) {
 					$("#tabs").tabs("select", "contact-us");
 					alert(response);
-				});	
+				});
 				return false;
 			});
 		</script>

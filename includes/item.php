@@ -55,7 +55,7 @@ if (!isset($id)) {
 }
 
 // Retrieve item information from XML source
-require_once('XMLinfo.php');
+// require_once('XMLinfo.php');
 
 // Save all relevent information into one variable
 class item{
@@ -68,20 +68,24 @@ class item{
 
 $item = new item();
 
+require_once('bibdata_info.php');
+
 $index = 0;
+$firestone_array = $f_array;
+
 // Iterate through all returned firestone records
 for($x = 0; $x < count($firestone_array); $x++){
 
 	if ($loc == $firestone_array[$x]->location){
 		global $index, $hits;
-			
+
 		// If temporary location exists, check if user specified which copy they are searching for
 		if (($set_hit > 0)&&($hits == $set_hit-1)) {
 			$hits++;
 			$index = $x;
 			break;
 		}
-			
+
 		// If multiple items are present in location, display items that are currently not charged
 		else if ($hits > 0) {
 			if (strstr($firestone_array[$x]->status, "Not")){
@@ -89,7 +93,7 @@ for($x = 0; $x < count($firestone_array); $x++){
 				$index = $x;
 			}
 		}
-			
+
 		// If only one copy exists
 		else {
 			$hits++;
@@ -120,7 +124,7 @@ if (($hits > 1) || ($set_hit > 0)) {
 	else {
 
 		displayMultipleCopies($firestone_array, $index);
-			
+
 	}
 }
 
@@ -132,7 +136,7 @@ if (isset($firestone_array[$index]->tmp_location) &&  $firestone_array[$index]->
 else $location_code = $firestone_array[$index]->location;
 
 // Check policy
-include('XMLpolicy.php');
+//include('XMLpolicy.php');
 
 // Display title information
 if ($firestone_array[0]->title > ""){
@@ -174,7 +178,7 @@ if (isset($firestone_array[$index]->call_display)) {
 } else {
 	$item->call_display = "";
 }
-$item->info = str_replace("\"","&quot;",$title) . $author  . $status . $multiple. '<br />' . '<br />' . $firestone_array[$index]->display . " " . $item->call_display . '<br />' . $firestone_array[0]->policy . '<br />';
+$item->info = str_replace("\"","&quot;",$title) . $author  . $status . $multiple. '<br />' . '<br />' . $item->call_display . '<br />';
 
 $item->id = $id;
 
@@ -264,7 +268,7 @@ function  noLocation() {
 //Check if collection has designated location------------------------------------
 function DesignatedLocation() {
 	global $item, $Locator, $dbconnects;
-		
+
 	$sql = "SELECT * FROM lctr_Collections_cn WHERE left_cn = '$item->lc'";
 
 	if ($subResult = $dbconnects["current"]->query($sql))  {
@@ -330,7 +334,7 @@ function RangeLocation(){
 				$item->message        = $row['message_cn'];
 
 			}
-				
+
 			// Pitney collection has special case!
 			$findme   = "PITN";
 			$pos = strpos($item->callnum, $findme);
@@ -356,7 +360,7 @@ function RangeLocation(){
 //Compile information for index card -------------------------------------
 function compileInfo(){
 	global $item, $Locator, $dbconnects;
-	
+
 
 	$content_var = array();
 	$num = 0;
@@ -378,19 +382,19 @@ function compileInfo(){
 			$item->charged = "false";
 			$item->info .= "<br \>" . $content_var[0];
 		}
-		
+
 		// Set text if item has no status, and there is no message
 		else if ($item->status == "" && $item->message == "") {
 			$item->charged = "false";
 			$item->info .= "<br \>" . $content_var[1];
 		}
-		
+
 		// Set text if item is charged (not available)
 		else if ($item->status != ""){
 			$item->charged = "true";
 			$item->info .= "<br \>" . $content_var[2];;
 		}
-		
+
 		$item->info .= "<br \>" . $item->message;
 		//$item->info = flash_encode($item->info);
 	} else {
@@ -405,7 +409,7 @@ function compileInfo(){
 function getFloorStats() {
 
 	global $item, $Locator, $dbconnects;
-	
+
 	// Retreive information nec. for building map array
 	$sql = "SELECT * FROM lctr_Coordinates_cn WHERE FloorDB_cn = '$item->floorDB'";
 
@@ -532,11 +536,11 @@ function loadError($msg=""){
 		</tr>
 		<tr>
 			<td width="600" valign="top"><?php echo "<p>Please consult a member of the Library staff for help in locating this item, or send a copy of the catalog record to ";
-	
+
 			?> <a href=mailto:fstcirc@princeton.edu>fstcirc@princeton.edu</a> <?php
-	
+
 			echo " .</p><p> Please use the <a href=\"http://libserv5.princeton.edu/requests/index.php?bib=".$_GET["id"]."\" target=\"_blank\">In Process Request</a> service if the item has no call number, is \"on order\", or is \"in the pre-order process\". </p>" . '<p>' . "$msg<br>";
-	
+
 			echo '</p>' ;
 			?>
 			</td>
@@ -547,7 +551,7 @@ function loadError($msg=""){
 			<td valign="top"><a
 				href="http://library.princeton.edu/about/locations">View map of
 					campus libraries</a></td>
-	
+
 		</tr>
 	</table>
 <?php
