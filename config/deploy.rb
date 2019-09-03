@@ -40,11 +40,39 @@ set :tmp_dir, '/home/deploy/tmp'
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-desc "Report Uptimes"
-task :link_env do
+desc "copy the db config"
+task :copy_db_config do
   on roles(:app) do |host|
-    execute "cd #{release_path}/includes && ln -sf /home/deploy/db_config.php db_config.php"
-    info "linked db_config.php"
+    execute "cp /home/deploy/db_config.php #{release_path}/includes"
+    info "copied db_config.php"
   end
 end
-after :deploy, :link_env
+after :deploy, :copy_db_config
+
+desc "Run mysql client against a local sql file SQL_DIR/SQL_GZ_FILE"
+task :import_dump do
+  gz_file_name = ENV["SQL_GZ_FILE"]
+  sql_file_name = gz_file_name.sub('.gz','')
+  sql_dir = ENV['SQL_DIR']
+  on roles(:app) do |host|
+    upload! File.join(sql_dir, gz_file_name), "/tmp/#{gz_file_name}"
+    execute "gzip -d -f /tmp/#{gz_file_name}"
+    execute "mysql #{fetch(:stage_db)}< /tmp/#{sql_file_name}"
+    execute "mysql #{fetch(:production_db)}< /tmp/#{sql_file_name}"
+  end
+end
+
+desc "Upload images for the floor plans to the server FILE_DIR/GZ_FILE"
+task :upload_images do
+  gz_file_name = ENV["GZ_FILE"]
+  file_name = gz_file_name.sub('.gz','')
+  file_dir = ENV['FILE_DIR']
+  on roles(:app) do |host|
+    upload! File.join(file_dir, gz_file_name), "/tmp/#{gz_file_name}"
+    execute "gzip -d -f /tmp/#{gz_file_name}"
+    execute :mkdir, '-p', "#{release_path}/images/production/f"
+    execute :mkdir, '-p', "#{release_path}/images/stage/f"
+    execute "cd #{release_path}/images/production/f && tar -xvf /tmp/#{file_name}"
+    execute "cd #{release_path}/images/stage/f && tar -xvf /tmp/#{file_name}"
+  end
+end
