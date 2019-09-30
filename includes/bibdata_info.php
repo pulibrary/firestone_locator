@@ -35,7 +35,7 @@ if ($id > 0){
 	$copies = count($bibdata_array->f);
 	for ($i = 0; $i < $copies; $i++) {
 		$this_item->location = $bibdata_array->f[$i]->items[0]->perm_location;
-		$this_item->call = $bibdata_array->f[$i]->call_number;
+		$this_item->call = $bibdata_array->f[$i]->sortable_call_number;
 		$this_item->call_display = $bibdata_array->f[$i]->call_number;
 		$this_item->display = '';
 		$this_item->status = implode(",",$bibdata_array->f[$i]->items[0]->status);
