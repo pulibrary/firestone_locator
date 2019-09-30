@@ -30,3 +30,11 @@ A .lando.yml file is provided - You will need to install Lando: https://docs.dev
 8. Application route will be http://localhost:32807/
 9. Admin route will be http://localhost:32807/admin.
 10. Add current map image set. Currently needs to be manually pulled from production application. Locate images in ```images/production/f``` and ```images/stage/f```.
+
+## Deploy to server
+
+We have capistrano set up to deploy our servers
+ 1. `cap staging deploy` will deploy the master branch to staging
+ 1. `BRANCH=other cap staging deploy` will deploy the other branch to staging
+
+   `cap -T` gives you a list of commands that can be run
