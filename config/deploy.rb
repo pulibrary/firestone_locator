@@ -40,6 +40,8 @@ set :tmp_dir, '/home/deploy/tmp'
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
+set :locator_fileshare_mount, "/mnt/diglibdata/locator-data"
+
 desc "copy the db config"
 task :copy_db_config do
   on roles(:app) do |host|
@@ -48,6 +50,17 @@ task :copy_db_config do
   end
 end
 after :deploy, :copy_db_config
+
+desc "link the images directories"
+task :link_images do
+  on roles(:app) do |host|
+    execute "mkdir #{release_path}/images/stage"
+    execute "cd #{release_path}/images/production && ln -sf #{fetch(:locator_fileshare_mount)}/production f"
+    execute "cd #{release_path}/images/stage && ln -sf #{fetch(:locator_fileshare_mount)}/stage f"
+    info "linked the images directories"
+  end
+end
+after :deploy, :link_images
 
 desc "Run mysql client against a local sql file SQL_DIR/SQL_GZ_FILE"
 task :import_dump do
