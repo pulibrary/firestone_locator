@@ -76,7 +76,7 @@ $firestone_array = $f_array;
 // Iterate through all returned firestone records
 for($x = 0; $x < count($firestone_array); $x++){
 
-	if ($loc == $firestone_array[$x]->location){
+	if (($loc == $firestone_array[$x]->location) || ($loc == $firestone_array[$x]->tmp_location)){
 		global $index, $hits;
 
 		// If temporary location exists, check if user specified which copy they are searching for
@@ -101,6 +101,7 @@ for($x = 0; $x < count($firestone_array); $x++){
 		}
 	}
 }
+
 // If multiple copies exist in one permanent location
 if (($hits > 1) || ($set_hit > 0)) {
 
