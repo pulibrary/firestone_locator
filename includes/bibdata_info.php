@@ -40,7 +40,7 @@ if ($id > 0){
 		$this_item->display = '';
 		$this_item->status = implode(",",$bibdata_array->f[$i]->items[0]->status);
 		$this_item->tmp_location = $bibdata_array->f[$i]->items[0]->temp_location;
-		array_push($f_array, $this_item);
+		array_push($f_array, clone $this_item);
 	}
 
 }
