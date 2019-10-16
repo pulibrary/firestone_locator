@@ -23,7 +23,14 @@ if ($id > 0){
 	$f_array[0]->call=$bibdata_solr_array->call_number_display[0];
 	$f_array[0]->author=$bibdata_solr_array->author_display[0];
 	$f_array[0]->display=$bibdata_solr_array->call_number_display[0];
-	$f_array[0]->location=$bibdata_solr_array->location_code_s[0];
+
+	// if one of the holdings includes the location the parameters are asking for set that as the location
+	if (($loc) && (in_array($loc, $bibdata_solr_array->location_code_s))) {
+		$f_array[0]->location=$loc;
+	} else {
+		$f_array[0]->location=$bibdata_solr_array->location_code_s[0];
+	}
+
 	$f_array[0]->status='';
 	$f_array[0]->tmp_location='';
 	$f_array[0]->display='';
@@ -35,15 +42,20 @@ if ($id > 0){
 
 		$copies = count($bibdata_array->f);
 		for ($i = 0; $i < $copies; $i++) {
-			$this_item->location = $bibdata_array->f[$i]->items[0]->perm_location;
-			$this_item->call = $bibdata_array->f[$i]->sortable_call_number;
-			$this_item->call_display = $bibdata_array->f[$i]->call_number;
-			$this_item->display = '';
-			$this_item->status = implode(",",$bibdata_array->f[$i]->items[0]->status);
-			$this_item->tmp_location = $bibdata_array->f[$i]->items[0]->temp_location;
-			array_push($f_array, clone $this_item);
-		}
+			// only parse the f field if it includes items
+			if ($bibdata_array->f[$i]->items) {
+				$this_item->location = $bibdata_array->f[$i]->items[0]->perm_location;
+				$this_item->call = $bibdata_array->f[$i]->sortable_call_number;
+				$this_item->call_display = $bibdata_array->f[$i]->call_number;
+				$this_item->display = '';
+				$this_item->status = implode(",",$bibdata_array->f[$i]->items[0]->status);
+				$this_item->tmp_location = $bibdata_array->f[$i]->items[0]->temp_location;
+				array_push($f_array, clone $this_item);
+		  }
+  	}
 	
+	// we can not get item information we are just going to set the temporary location
+	//  to the one they are looking for assuming the data they are asking for is correct
 	} else {
 		$f_array[0]->tmp_location= $loc;
 	}
