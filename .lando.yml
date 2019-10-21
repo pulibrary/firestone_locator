@@ -12,3 +12,8 @@ services:
       password: locator
     run_as_root:
       - mysql -uroot -e "CREATE DATABASE IF NOT EXISTS locator_stage; GRANT ALL PRIVILEGES ON locator_stage.* TO 'locator'@'%' IDENTIFIED by 'locator';"
+tooling:
+  test:
+    description: run all our tests 
+    cmd:
+      - appserver: php phpunit-7.4.phar tests
