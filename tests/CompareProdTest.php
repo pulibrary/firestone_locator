@@ -63,12 +63,10 @@ class CompareProdTest extends \PHPUnit\Framework\TestCase {
     'http://firestone-book-locater.lndo.site/index.php?loc=pres&id=6063165&embed=true',
     'http://firestone-book-locater.lndo.site/index.php?loc=resc&id=1087546&embed=true',
     'http://firestone-book-locater.lndo.site/index.php?loc=resc&id=209470&embed=true',
-    'http://firestone-book-locater.lndo.site/index.php?loc=resc&id=1028818&embed=true'];
-
-    // production is current pointing to the wrong location
-    // 'http://firestone-book-locater.lndo.site/index.php?loc=resc&id=4830941&embed=true',
-    // 'http://firestone-book-locater.lndo.site/index.php?loc=resc&id=6095425&embed=true',
-
+    'http://firestone-book-locater.lndo.site/index.php?loc=resc&id=1028818&embed=true',
+    'http://firestone-book-locater.lndo.site/index.php?loc=resc&id=4830941&embed=true',
+    'http://firestone-book-locater.lndo.site/index.php?loc=resc&id=6095425&embed=true',
+    ];
   }
 
   function testLinks() {

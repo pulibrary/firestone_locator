@@ -33,7 +33,6 @@ class BibdataInfo {
 			} else {
 				$f_array[0]->author = '';
 			}
-			$f_array[0]->display=$bibdata_solr_array->call_number_display[0];
 
 			// if one of the holdings includes the location the parameters are asking for set that as the location
 			if (($loc) && (in_array($loc, $bibdata_solr_array->location_code_s))) {
@@ -52,18 +51,22 @@ class BibdataInfo {
 				$json = file_get_contents($bibdata_items_url);
 				if ($json) {
 					$bibdata_array = json_decode($json);
-	
-					$copies = count($bibdata_array->f);
-					for ($i = 0; $i < $copies; $i++) {
+					$location = $bibdata_array->f;
+					foreach ($location as $bibdata_item) {
+					// for ($i = 0; $i < $copies; $i++) {
 						// only parse the f field if it includes items
-						if ($bibdata_array->f[$i]->items) {
+						if ($bibdata_item->items) {
 							$this_item = new stdClass();
-							$this_item->location = $bibdata_array->f[$i]->items[0]->perm_location;
-							$this_item->call = $bibdata_array->f[$i]->sortable_call_number;
-							$this_item->call_display = $bibdata_array->f[$i]->call_number;
+							$this_item->location = $bibdata_item->items[0]->perm_location;
+							if (property_exists($bibdata_item,'sortable_call_number')) {
+								$this_item->call = $bibdata_item->sortable_call_number;
+							} else {
+
+							}
+							$this_item->call_display = $bibdata_item->call_number;
 							$this_item->display = '';
-							$this_item->status = implode(",",$bibdata_array->f[$i]->items[0]->status);
-							$this_item->tmp_location = $bibdata_array->f[$i]->items[0]->temp_location;
+							$this_item->status = implode(",",$bibdata_item->items[0]->status);
+							$this_item->tmp_location = $bibdata_item->items[0]->temp_location;
 							array_push($f_array, $this_item);
 						}
 					}
