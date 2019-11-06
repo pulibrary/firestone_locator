@@ -31,6 +31,18 @@ A .lando.yml file is provided - You will need to install Lando: https://docs.dev
 9. Admin route will be http://localhost:32807/admin.
 10. Add current map image set. Currently needs to be manually pulled from production application. Locate images in ```images/production/f``` and ```images/stage/f```.
 
+## Unit Tests
+
+### Caveats
+1. they take a fairly long time to run
+1. they are by no means complete
+
+Tests use phpunit https://phpunit.de/manual/current/en/index.html
+
+### To Run
+
+1. Run the tests on the lando server by running `lando test`
+
 ## Deploy to server
 
 We have capistrano set up to deploy our servers
