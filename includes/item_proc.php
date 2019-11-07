@@ -23,14 +23,14 @@ class ItemProc {
 		$index = 0;
 		$bibData = new BibdataInfo();
 		$firestone_array = $bibData->get_data($id, $loc);
-
     $hits = 0;
     $index = 0;
 
 		// Iterate through all returned firestone records
-		for($x = 0; $x < count($firestone_array); $x++){
-
-			if (($loc == $firestone_array[$x]->location) || ($loc == $firestone_array[$x]->tmp_location)){
+		foreach ($firestone_array as $x=>$holding) {
+			if ($x == 0) continue; # the first item is not really a holding, just the top level information
+		
+			if (($loc == $holding->location) || ($loc == $holding->tmp_location)){
 
 				// If temporary location exists, check if user specified which copy they are searching for
 				if (($set_hit > 0)&&($hits == $set_hit-1)) {
@@ -39,9 +39,9 @@ class ItemProc {
 					break;
 				}
 
-				// If multiple items are present in location, display items that are currently not charged
+				// If multiple items are present in location, display items that are currently not charged or Missing
 				else if ($hits > 0) {
-					if (strstr($firestone_array[$x]->status, "Not")){
+					if ((strstr($holding->status, "Not ")) && (! strstr($holding->status, "Missing"))){
 						$hits++;
 						$index = $x;
 					}
