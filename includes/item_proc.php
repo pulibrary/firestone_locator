@@ -496,7 +496,7 @@ function loadError($item, $msg=""){
 
 			?> <a href=mailto:fstcirc@princeton.edu>fstcirc@princeton.edu</a> <?php
 
-			echo " .</p><p> Please use the <a href=\"http://libserv5.princeton.edu/requests/index.php?bib=".$_GET["id"]."\" target=\"_blank\">In Process Request</a> service if the item has no call number, is \"on order\", or is \"in the pre-order process\". </p>" . '<p>' . "$msg<br>";
+			echo " .</p><p> Please use the <a href=\"https://catalog.princeton.edu/requests/".$item->id."?mfhd=".$item->id."&source=firestone_locator".$item->id."\" target=\"_blank\">In Process Request</a> service if the item has no call number, is \"on order\", or is \"in the pre-order process\". </p>" . '<p>' . "$msg<br>";
 
 			echo '</p>' ;
 			?>
