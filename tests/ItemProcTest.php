@@ -214,7 +214,7 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->location,'C-8-H');
     $this->assertEquals($item->fl,'C');
     $this->assertEquals($item->lc,'f');
-    $this->assertEquals($item->callnum,'PR6066.I53 P6 1971');
+    $this->assertEquals($item->callnum,'PR.6066.I53 P6 1971');
     $this->assertEquals($item->call_display,'PR6066.I53 P6 1971');
     $this->assertEquals($item->image,'C-8-H=RBSC.SWF');
     $this->assertEquals($item->legend,'legend.PNG');
@@ -440,4 +440,38 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->branch);
     $this->assertEquals($item->designated,true);
   }
+
+  // A suppressed item
+  function testF121362() {
+    $id = "121362";
+    $loc = "f";
+    $item = $this->item_proc->get_item("", $loc, $id);
+    $this->assertEquals($item->id,'121362');
+    $this->assertEquals($item->location,'B-17-N');
+    $this->assertEquals($item->fl,'B');
+    $this->assertEquals($item->lc,'f');
+    $this->assertEquals($item->callnum,'PQ.4001.S73');
+    $this->assertEquals($item->call_display,'PQ4001 .S73');
+    $this->assertEquals($item->image,'B-17-N=PQxxxx-PQ4876.R386.SWF');
+    $this->assertEquals($item->legend,'legend.PNG');
+    $this->assertNull($item->ref);
+    $this->assertNull($item->site);
+    $this->assertEquals($item->charged,'false');
+    $this->assertEquals($item->status,'');
+    $this->assertEquals($item->subject,'Language and literature');
+    $this->assertNull($item->message);
+    $this->assertEquals($item->floorDB,'f_B');
+    $this->assertEquals($item->start_x,'340');
+    $this->assertEquals($item->start_y,'300');
+    $this->assertEquals($item->end_x,'540');
+    $this->assertEquals($item->end_y,'100');
+    $this->assertEquals($item->shift_x,'70');
+    $this->assertEquals($item->shift_y,'4');
+    $this->assertEquals($item->scale_x,'0.96');
+    $this->assertEquals($item->scale_y,'0.96');
+    $this->assertEquals($item->tmp_location,'');
+    $this->assertNull($item->external);
+    $this->assertNull($item->branch);
+    $this->assertEquals($item->designated,true);
+  } 
 }

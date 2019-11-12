@@ -25,7 +25,7 @@ class BibdataInfo {
 			$bibdata_solr_array = json_decode($solr_json);
 			$f_array[0] = new stdClass();
 			$f_array[0]->title=$bibdata_solr_array->title_display[0];
-			$f_array[0]->call=$bibdata_solr_array->call_number_display[0];
+			$f_array[0]->call=$this->force_number_part_to_have_4_digits($bibdata_solr_array->call_number_display[0]);
 			if (isset($bibdata_solr_array->author_display)) {
 				$f_array[0]->author=$bibdata_solr_array->author_display[0];
 			}	elseif (isset($bibdata_solr_array->author_s)){
@@ -47,8 +47,14 @@ class BibdataInfo {
 
 			// We are in firestone, so we need all information from items to product the correct map
 			if ($loc == 'f') {
-				$bibdata_items_url = "https://bibdata.princeton.edu/bibliographic/" . $id . "/items";
-				$json = file_get_contents($bibdata_items_url);
+				try {
+					$bibdata_items_url = "https://bibdata.princeton.edu/bibliographic/" . $id . "/items";
+					$json = file_get_contents($bibdata_items_url);
+				} catch (Exception $e) {
+					// echo 'Caught exception: ',  $e->getMessage(), "\n";
+					$json = '';
+				}
+			
 				if ($json) {
 					$bibdata_array = json_decode($json);
 					$location = $bibdata_array->f;
@@ -75,6 +81,7 @@ class BibdataInfo {
 				//  to the one they are looking for assuming the data they are asking for is correct
 				} else {
 					$f_array[0]->tmp_location= $loc;
+					$f_array[0]->call_display=$bibdata_solr_array->call_number_display[0];
 				}
 	
 			// The catalog has told us an alternative location
@@ -85,6 +92,27 @@ class BibdataInfo {
 			}
 		} 
 		return $f_array;
+	}
+
+	private function force_number_part_to_have_4_digits($call_no) {
+    $all_dots =str_replace(',', '.', $call_no);
+		$dot_parts = preg_split("/\./", $all_dots);
+
+		if (count($dot_parts)<=1){
+			return $call_no;
+		}
+		preg_match("/[A-Za-z]+/", $dot_parts[0], $parts);
+		if (count($parts) > 0){
+			$letter_part = $parts[0];
+		} else{
+			$letter_part = '';
+		}
+		
+		preg_match("/\d+/", $dot_parts[0], $parts);
+		$number_part = $parts[0];
+		$number_part =  str_pad($number_part, 4, "0", STR_PAD_LEFT);
+		$dot_parts[0] = $letter_part.".".$number_part;
+		return implode(".", $dot_parts);
 	}
 }
 ?>
