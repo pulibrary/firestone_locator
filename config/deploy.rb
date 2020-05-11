@@ -89,3 +89,25 @@ task :upload_images do
     execute "cd #{release_path}/images/stage/f && tar -xvf /tmp/#{file_name}"
   end
 end
+
+desc "Update the database engine to be INNODB"
+task :update_engine do
+  alter_sql = [
+              "alter table lctr_Campus_cn ENGINE= InnoDB;",
+              "update lctr_Collections_cn set date_cn = '2013-01-01 01:01:01'  WHERE CAST(date_cn AS CHAR(20)) = '0000-00-00 00:00:00';",
+              "alter table lctr_Collections_cn ENGINE= InnoDB;",
+              "alter table lctr_Coordinates_cn ENGINE= InnoDB;",
+              "alter table lctr_External_cn ENGINE= InnoDB;",
+              "alter table lctr_Messages_cn ENGINE= InnoDB;",
+              "alter table lctr_Octavos_cn ENGINE= InnoDB;",
+              "alter table lctr_Octavos_cn_orig ENGINE= InnoDB;",
+              "alter table lctr_Oversize_cn ENGINE= InnoDB;",
+              "alter table lctr_User_usr ENGINE= InnoDB;"
+              ]
+  on roles(:app) do |host|
+    alter_sql.each do |sql_statement|
+      execute "mysql #{fetch(:stage_db)} -e \"#{sql_statement}\""
+      execute "mysql #{fetch(:production_db)} -e \"#{sql_statement}\""
+    end
+  end
+end
