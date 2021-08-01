@@ -20,7 +20,7 @@ class BibdataInfo {
 			// $xml_tmp_location = "*COLLECTION*RECORD*ITEM*TEMP_LOCATION_CODE";
 			// $xml_tmp_display  = "*COLLECTION*RECORD*ITEM*TEMP_LOCATION_DISPLAY_NAME";
 
-			$bibdata_solr_url = "https://catalog-alma.princeton.edu/catalog/" . $id . "/raw";
+			$bibdata_solr_url = "https://catalog.princeton.edu/catalog/" . $id . "/raw";
 			$solr_json = file_get_contents($bibdata_solr_url);
 			$bibdata_solr_array = json_decode($solr_json);
 			$f_array[0] = new stdClass();
@@ -48,7 +48,7 @@ class BibdataInfo {
 			// We are in firestone, so we need all information from items to product the correct map
 			if ($loc == 'f') {
 				try {
-					$bibdata_items_url = "https://bibdata-alma-staging.princeton.edu/bibliographic/" . $id . "/items";
+					$bibdata_items_url = "https://bibdata.princeton.edu/bibliographic/" . $id . "/items";
 					$json = file_get_contents($bibdata_items_url);
 				} catch (Exception $e) {
 					// echo 'Caught exception: ',  $e->getMessage(), "\n";
