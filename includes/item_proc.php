@@ -22,9 +22,14 @@ class ItemProc {
 
 		$index = 0;
 		$bibData = new BibdataInfo();
+		if ($loc == 'firestone$stacks') {
+			$loc = "f";
+		} else {
+			$loc = str_replace('firestone$', '', $loc);
+		}
 		$firestone_array = $bibData->get_data($id, $loc);
-    $hits = 0;
-    $index = 0;
+    	$hits = 0;
+    	$index = 0;
 
 		// Iterate through all returned firestone records
 		foreach ($firestone_array as $x=>$holding) {
@@ -116,11 +121,12 @@ class ItemProc {
 		}
 
 		// Display item status: charged / not-charged
-		if ($firestone_array[$index]->status != ""){
-			$status = "<b>Item status:</b> " . trim($firestone_array[$index]->status);
-		} else {
-			$status = "";
-		}
+		//if ($firestone_array[$index]->status != ""){
+		//	$status = "<b>Item status:</b> " . trim($firestone_array[$index]->status);
+		//} else {
+		//	$status = "";
+		//}
+		$status = "";
 
 		// Display multiple information
 		if (!isset($multiple) ){

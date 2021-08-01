@@ -20,7 +20,7 @@ class BibdataInfo {
 			// $xml_tmp_location = "*COLLECTION*RECORD*ITEM*TEMP_LOCATION_CODE";
 			// $xml_tmp_display  = "*COLLECTION*RECORD*ITEM*TEMP_LOCATION_DISPLAY_NAME";
 
-			$bibdata_solr_url = "https://bibdata.princeton.edu/bibliographic/" . $id . "/solr";
+			$bibdata_solr_url = "https://catalog.princeton.edu/catalog/" . $id . "/raw";
 			$solr_json = file_get_contents($bibdata_solr_url);
 			$bibdata_solr_array = json_decode($solr_json);
 			$f_array[0] = new stdClass();
@@ -57,13 +57,13 @@ class BibdataInfo {
 			
 				if ($json) {
 					$bibdata_array = json_decode($json);
-					$location = $bibdata_array->f;
+					$location = $bibdata_array->{'firestone$stacks'};
 					foreach ($location as $bibdata_item) {
 					// for ($i = 0; $i < $copies; $i++) {
 						// only parse the f field if it includes items
 						if ($bibdata_item->items) {
 							$this_item = new stdClass();
-							$this_item->location = $bibdata_item->items[0]->perm_location;
+							$this_item->location = "f"; //$bibdata_item->items[0]->perm_location;
 							if (property_exists($bibdata_item,'sortable_call_number')) {
 								$this_item->call = $bibdata_item->sortable_call_number;
 							} else {
@@ -71,7 +71,7 @@ class BibdataInfo {
 							}
 							$this_item->call_display = $bibdata_item->call_number;
 							$this_item->display = '';
-							$this_item->status = implode(",",$bibdata_item->items[0]->status);
+							//$this_item->status = implode(",",$bibdata_item->items[0]->status);
 							$this_item->tmp_location = $bibdata_item->items[0]->temp_location;
 							array_push($f_array, $this_item);
 						}
