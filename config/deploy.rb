@@ -41,7 +41,6 @@ append :linked_dirs, "sql-files"
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :locator_fileshare_mount, "/mnt/diglibdata/locator-data"
 
 desc "copy the db config"
 task :copy_db_config do

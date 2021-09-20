@@ -88,18 +88,22 @@ class ItemProc {
 			}
 		}
 
-		$callnum = 	 $firestone_array[$index]->call;
+		if (isset($firestone_array[$index]->call))
+			$callnum = 	 $firestone_array[$index]->call;
+		else
+			$callnum = "";
 
 		// Check for temporary locations
 		if (isset($firestone_array[$index]->tmp_location) &&  $firestone_array[$index]->tmp_location != "")
 			$location_code = $firestone_array[$index]->tmp_location;
-		else $location_code = $firestone_array[$index]->location;
+		elseif (isset($firestone_array[$index]->location)) $location_code = $firestone_array[$index]->location;
+		else $location_code = "";
 
 		// Check policy
 		//include('XMLpolicy.php');
 
 		// Display title information
-		if ($firestone_array[0]->title > ""){
+		if (isset($firestone_array[0]->title) && $firestone_array[0]->title > ""){
 			$title = $firestone_array[0]->title;
 
 			if (strlen($title) > 150) {
@@ -111,14 +115,12 @@ class ItemProc {
 
 			$title = "<b>Title:</b> " . $title . '<br>';
 			//echo $title;
-		}
+		} else $title = "";
 
 		// Display author information
-		if ($firestone_array[0]->author != ""){
+		if (isset($firestone_array[0]->author) && ($firestone_array[0]->author != "")){
 			$author = "<b>Author:</b> " . $firestone_array[0]->author . '<br>';
-		} else {
-			$author = "";
-		}
+		} else $author = "";
 
 		// Display item status: charged / not-charged
 		//if ($firestone_array[$index]->status != ""){
