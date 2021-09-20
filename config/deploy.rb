@@ -1,11 +1,11 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.0"
+lock "~> 3.16.0"
 
 set :application, "firestone_locator"
-set :repo_url, "git@github.com:pulibrary/firestone_locator.git"
+set :repo_url, "https://github.com/pulibrary/firestone_locator.git"
 
-# Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+# Default branch is :main
+set :branch, ENV["BRANCH"] || "main"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/firestone_locator_cap"

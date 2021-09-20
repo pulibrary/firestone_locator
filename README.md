@@ -46,7 +46,7 @@ Tests use phpunit https://phpunit.de/manual/current/en/index.html
 ## Deploy to server
 
 We have capistrano set up to deploy our servers
- 1. `cap staging deploy` will deploy the master branch to staging
+ 1. `cap staging deploy` will deploy the main branch to staging
  1. `BRANCH=other cap staging deploy` will deploy the other branch to staging
 
    `cap -T` gives you a list of commands that can be run
