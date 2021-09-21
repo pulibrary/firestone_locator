@@ -48,17 +48,22 @@ require_once('includes/extandbranch.php');
 		</div>
 		<div id="contact-us">
 			<button class="ui-icon ui-icon-close">Close Panel</button>
+                        <?php if(isset($_REQUEST['id'])) {
+                                      $id = $_REQUEST['id'];
+                              } else {
+				      												$id = null;
+                              }
+                        ?>
 			<!--
 			<form id="contact-form" action="SendMail.php" method="post">
 				Name:<br /> <input type="text" name="name" /><br /></br> E-mail:<br />
 				<input type="text " name="email"><br /> <br /> Comment:<br />
 				<textarea name="com" rows="5" cols="50"></textarea>
 				<br /> <br /> <input type="hidden"
-					value="<?php echo $_REQUEST['id'] ?>" name="bib" /> <input
+					value="<?php echo $id ?>" name="bib" /> <input
 					type="submit" name="submit" value="Send" />
 			</form>
 			-->
-			<?php $id = $_REQUEST['id'] ?>
 			<?php if (!is_numeric($id)) {
 				$id = null;
 			} else {

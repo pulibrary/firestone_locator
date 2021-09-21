@@ -9,7 +9,7 @@ function db_backup($env="stage") {
 	
 	$date = str_replace (" ", "", date("m-d-Y.H:i"));
 	$file = "locator.$env." . $date .".sql";
-	$out1 = $db_tools["mysqldump"]." --host=".$db_settings[$env.'host']." --user=".$db_settings['username']." --password=".$db_settings['password']." --port".$db_settings['port']." locator_$env > ../sql-files/$file";
+	$out1 = $db_tools["mysqldump"]." --host=".$db_settings[$env.'host']." --user=".$db_settings['username']." --password=".$db_settings['password']." --port ".$db_settings['port']." ".$db_settings['database_base']."_$env > ../sql-files/$file";
 	exec($out1,$output,$returncode);
 	if ($returncode!=0) {
 		echo "<div class='messages error'><div class='message-icon'><i class='fa fa-exclamation-triangle' /></div><div class='message'>An error occured, the file $file could not be backed up.</div></div>";
@@ -24,7 +24,7 @@ function db_backup($env="stage") {
 function db_restore($file, $env="stage") {
 	global $dbconnects, $db_settings, $db_tools;
 	
-	$out1 = $db_tools["mysql"]." --host=".$db_settings[$env.'host']." --user=".$db_settings['username']." --password=".$db_settings['password']." --port".$db_settings['port']." locator_$env < ../sql-files/$file";
+	$out1 = $db_tools["mysql"]." --host=".$db_settings[$env.'host']." --user=".$db_settings['username']." --password=".$db_settings['password']." --port ".$db_settings['port']." ".$db_settings['database_base']."_$env < ../sql-files/$file";
 	exec($out1,$output,$returncode);
 	if ($returncode!=0) {
 		echo "<div class='messages error'><div class='message-icon'><i class='fa fa-exclamation-triangle' /></div><div class='message'>An error occured, the file $file could not be restored.  No change has been made to the $env environment.</div></div>";
@@ -44,7 +44,7 @@ function db_deploy() {
 		return false;
 	
 	} else {
-		$out1 = $db_tools["mysql"]." --host=".$db_settings['productionhost']." --user=".$db_settings['username']." --password=".$db_settings['password']." --port".$db_settings['port']." locator_production < ../sql-files/$stageFile";
+		$out1 = $db_tools["mysql"]." --host=".$db_settings['productionhost']." --user=".$db_settings['username']." --password=".$db_settings['password']." --port ".$db_settings['port']." ".$db_settings['database_base']."_production < ../sql-files/$stageFile";
 		exec($out1,$output,$returncode);
 		if ($returncode!=0) {
 			echo "<div class='messages error'><div class='message-icon'><i class='fa fa-exclamation-triangle' /></div><div class='message'>An error occured, the stage environment could not be deployed.  No change has been made to the production environment.</div></div>";

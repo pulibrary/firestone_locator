@@ -27,6 +27,7 @@ set :tmp_dir, '/home/deploy/tmp'
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "sql-files"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -40,7 +41,6 @@ set :tmp_dir, '/home/deploy/tmp'
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :locator_fileshare_mount, "/mnt/diglibdata/locator-data"
 
 desc "copy the db config"
 task :copy_db_config do
