@@ -23,7 +23,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
     $this->assertEquals($item->subject,'Economics');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_B');
@@ -55,8 +54,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->legend,'legend.PNG');
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
-    $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged,Lost--Library Applied');
     $this->assertEquals($item->subject,'Items awaiting reclassification');
     $this->assertEquals($item->message,'Use the online trace request or ask at the Circulation/Reserve Desk to request items in (F) with call numbers from 0100 through 9999.');
     $this->assertEquals($item->floorDB,'f_1');
@@ -188,7 +185,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
     $this->assertEquals($item->subject,'Language and literature');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_B');
@@ -200,39 +196,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->shift_y,'4');
     $this->assertEquals($item->scale_x,'0.96');
     $this->assertEquals($item->scale_y,'0.96');
-    $this->assertEquals($item->tmp_location,'');
-    $this->assertNull($item->external);
-    $this->assertNull($item->branch);
-    $this->assertEquals($item->designated,true);
-  }
-
-  function testEx9922894373506421() {
-    $id = "9922894373506421";
-    $loc = "ex";
-    $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'9922894373506421');
-    $this->assertEquals($item->location,'C-8-H');
-    $this->assertEquals($item->fl,'C');
-    $this->assertEquals($item->lc,'f');
-    $this->assertEquals($item->callnum,'PR.6066.I53 P6 1971');
-    $this->assertEquals($item->call_display,'PR6066.I53 P6 1971');
-    $this->assertEquals($item->image,'C-8-H=RBSC.SWF');
-    $this->assertEquals($item->legend,'legend.PNG');
-    $this->assertNull($item->ref);
-    $this->assertNull($item->site);
-    $this->assertNull($item->charged);
-    $this->assertEquals($item->status,'');
-    $this->assertEquals($item->subject,'Rare Books (Ex)');
-    $this->assertEquals($item->message,'This item should be requested from the catalog record and must be consulted in Rare Books and Special Collections (C-8-H Firestone Library).');
-    $this->assertEquals($item->floorDB,'f_C');
-    $this->assertEquals($item->start_x,'330');
-    $this->assertEquals($item->start_y,'370');
-    $this->assertEquals($item->end_x,'310');
-    $this->assertEquals($item->end_y,'320');
-    $this->assertEquals($item->shift_x,'12');
-    $this->assertEquals($item->shift_y,'12');
-    $this->assertEquals($item->scale_x,'1.02');
-    $this->assertEquals($item->scale_y,'1.02');
     $this->assertEquals($item->tmp_location,'');
     $this->assertNull($item->external);
     $this->assertNull($item->branch);
@@ -254,8 +217,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->legend,'legend.PNG');
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
-    $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged,Missing');
     $this->assertEquals($item->subject,'Items awaiting reclassification');
     $this->assertEquals($item->message,'Use the online trace request or ask at the Circulation/Reserve Desk to request items in (F) with call numbers from 0100 through 9999.');
     $this->assertEquals($item->floorDB,'f_1');
@@ -288,7 +249,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
     $this->assertEquals($item->subject,'Language and literature');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_B');
@@ -322,8 +282,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
-    $this->assertEquals($item->subject,'Language and literature');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_B');
     $this->assertEquals($item->start_x,'340');
@@ -355,8 +313,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged,Missing');
-    $this->assertEquals($item->subject,'Economics. Sociology');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'F_B');
     $this->assertEquals($item->start_x,'340');
@@ -388,8 +344,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
-    $this->assertEquals($item->subject,'Military Science');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_C');
     $this->assertEquals($item->start_x,'330');
@@ -423,7 +377,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
     $this->assertEquals($item->subject,'Military Science');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_C');

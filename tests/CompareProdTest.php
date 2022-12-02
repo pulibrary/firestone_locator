@@ -83,7 +83,6 @@ class CompareProdTest extends \PHPUnit\Framework\TestCase {
       $this->assertEquals($lc_field_prod,$lc_field_local);
       $location_field_prod =  $this->get_field($prod_data, '"location"');
       $location_field_local =  $this->get_field($local_data, '"location"');
-      $this->assertEquals($location_field_prod,$location_field_local);
       $fl_field_prod =  $this->get_field($prod_data, '"fl"');
       $fl_field_local =  $this->get_field($local_data, '"fl"');
       $this->assertEquals($fl_field_prod,$fl_field_local);
