@@ -30,7 +30,6 @@ class ItemProc {
 		$firestone_array = $bibData->get_data($id, $loc);
     	$hits = 0;
     	$index = 0;
-
 		// Iterate through all returned firestone records
 		foreach ($firestone_array as $x=>$holding) {
 			if ($x == 0) continue; # the first item is not really a holding, just the top level information
@@ -42,14 +41,6 @@ class ItemProc {
 					$hits++;
 					$index = $x;
 					break;
-				}
-
-				// If multiple items are present in location, display items that are currently not charged or Missing
-				else if ($hits > 0) {
-					if ((strstr($holding->status, "Not ")) && (! strstr($holding->status, "Missing"))){
-						$hits++;
-						$index = $x;
-					}
 				}
 
 				// If only one copy exists

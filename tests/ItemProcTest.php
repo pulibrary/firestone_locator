@@ -8,11 +8,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->item_proc = new ItemProc();
   }
 
-  function testF11553618() {
-    $id = "11553618";
+  function testF99115536183506421() {
+    $id = "99115536183506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'11553618');
+    $this->assertEquals($item->id,'99115536183506421');
     $this->assertEquals($item->location,'B-12-B');
     $this->assertEquals($item->fl,'B');
     $this->assertEquals($item->lc,'f');
@@ -23,7 +23,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
     $this->assertEquals($item->subject,'Economics');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_B');
@@ -41,11 +40,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->designated,true);
   }
 
-  function testF1661451() {
-    $id = "1661451";
+  function testF9916614513506421() {
+    $id = "9916614513506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'1661451');
+    $this->assertEquals($item->id,'9916614513506421');
     $this->assertEquals($item->location,'1-10-F');
     $this->assertEquals($item->fl,'1');
     $this->assertEquals($item->lc,'f');
@@ -55,8 +54,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->legend,'legend.PNG');
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
-    $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged,Lost--Library Applied');
     $this->assertEquals($item->subject,'Items awaiting reclassification');
     $this->assertEquals($item->message,'Use the online trace request or ask at the Circulation/Reserve Desk to request items in (F) with call numbers from 0100 through 9999.');
     $this->assertEquals($item->floorDB,'f_1');
@@ -74,11 +71,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->designated,true);
   }
 
-  function testRESC943304() {
-    $id = "943304";
+  function testRESC999433043506421() {
+    $id = "999433043506421";
     $loc = "resc";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'943304');
+    $this->assertEquals($item->id,'999433043506421');
     $this->assertEquals($item->location,'1-10-F');
     $this->assertEquals($item->fl,'1');
     $this->assertEquals($item->lc,'f');
@@ -107,11 +104,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->designated,true);
   }
 
-  function testRESC9573790() {
-    $id = "9573790";
+  function testRESC9995737903506421() {
+    $id = "9995737903506421";
     $loc = "resc";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'9573790');
+    $this->assertEquals($item->id,'9995737903506421');
     $this->assertEquals($item->location,'1-10-F');
     $this->assertEquals($item->fl,'1');
     $this->assertEquals($item->lc,'f');
@@ -140,11 +137,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->designated,true);
   }
 
-  function testRESC10926564() {
-    $id = "10926564";
+  function testRESC99109265643506421() {
+    $id = "99109265643506421";
     $loc = "resc";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'10926564');
+    $this->assertEquals($item->id,'99109265643506421');
     $this->assertEquals($item->location,'1-10-F');
     $this->assertEquals($item->fl,'1');
     $this->assertEquals($item->lc,'f');
@@ -173,11 +170,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->designated,true);
   }
 
-  function testF994986() {
-    $id = "994986";
+  function testF999949863506421() {
+    $id = "999949863506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'994986');
+    $this->assertEquals($item->id,'999949863506421');
     $this->assertEquals($item->location,'B13-M');
     $this->assertEquals($item->fl,'B');
     $this->assertEquals($item->lc,'f');
@@ -188,7 +185,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
     $this->assertEquals($item->subject,'Language and literature');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_B');
@@ -206,45 +202,12 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->designated,true);
   }
 
-  function testEx2289437() {
-    $id = "2289437";
-    $loc = "ex";
-    $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'2289437');
-    $this->assertEquals($item->location,'C-8-H');
-    $this->assertEquals($item->fl,'C');
-    $this->assertEquals($item->lc,'f');
-    $this->assertEquals($item->callnum,'PR.6066.I53 P6 1971');
-    $this->assertEquals($item->call_display,'PR6066.I53 P6 1971');
-    $this->assertEquals($item->image,'C-8-H=RBSC.SWF');
-    $this->assertEquals($item->legend,'legend.PNG');
-    $this->assertNull($item->ref);
-    $this->assertNull($item->site);
-    $this->assertNull($item->charged);
-    $this->assertEquals($item->status,'');
-    $this->assertEquals($item->subject,'Rare Books (Ex)');
-    $this->assertEquals($item->message,'This item should be requested from the catalog record and must be consulted in Rare Books and Special Collections (C-8-H Firestone Library).');
-    $this->assertEquals($item->floorDB,'f_C');
-    $this->assertEquals($item->start_x,'330');
-    $this->assertEquals($item->start_y,'370');
-    $this->assertEquals($item->end_x,'310');
-    $this->assertEquals($item->end_y,'320');
-    $this->assertEquals($item->shift_x,'12');
-    $this->assertEquals($item->shift_y,'12');
-    $this->assertEquals($item->scale_x,'1.02');
-    $this->assertEquals($item->scale_y,'1.02');
-    $this->assertEquals($item->tmp_location,'');
-    $this->assertNull($item->external);
-    $this->assertNull($item->branch);
-    $this->assertEquals($item->designated,true);
-  }
-
   // Missing item with richardson call number should map to the front desk
-  function testF2289437() {
-    $id = "2289437";
+  function testF9922894373506421() {
+    $id = "9922894373506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'2289437');
+    $this->assertEquals($item->id,'9922894373506421');
     $this->assertEquals($item->location,'1-10-F');
     $this->assertEquals($item->fl,'1');
     $this->assertEquals($item->lc,'f');
@@ -254,8 +217,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->legend,'legend.PNG');
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
-    $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged,Missing');
     $this->assertEquals($item->subject,'Items awaiting reclassification');
     $this->assertEquals($item->message,'Use the online trace request or ask at the Circulation/Reserve Desk to request items in (F) with call numbers from 0100 through 9999.');
     $this->assertEquals($item->floorDB,'f_1');
@@ -273,11 +234,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->designated,true);
   }
 
-  function testF1459952() {
-    $id = "1459952";
+  function testF9914599523506421() {
+    $id = "9914599523506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'1459952');
+    $this->assertEquals($item->id,'9914599523506421');
     $this->assertEquals($item->location,'B-9-L');
     $this->assertEquals($item->fl,'B');
     $this->assertEquals($item->lc,'f');
@@ -288,7 +249,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
     $this->assertEquals($item->subject,'Language and literature');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_B');
@@ -307,11 +267,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
   }
 
   // Missing item should map to where the other copy is
-  function testF2268255() {
-    $id = "2268255";
+  function testF9922682553506421() {
+    $id = "9922682553506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'2268255');
+    $this->assertEquals($item->id,'9922682553506421');
     $this->assertEquals($item->location,'B-9-L');
     $this->assertEquals($item->fl,'B');
     $this->assertEquals($item->lc,'f');
@@ -322,8 +282,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
-    $this->assertEquals($item->subject,'Language and literature');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_B');
     $this->assertEquals($item->start_x,'340');
@@ -340,11 +298,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->designated,true);
   }
 
-  function testF1927472() {
-    $id = "1927472";
+  function testF9919274723506421() {
+    $id = "9919274723506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'1927472');
+    $this->assertEquals($item->id,'9919274723506421');
     $this->assertEquals($item->location,'B-1-B');
     $this->assertEquals($item->fl,'B');
     $this->assertEquals($item->lc,'f');
@@ -355,8 +313,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged,Missing');
-    $this->assertEquals($item->subject,'Economics. Sociology');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'F_B');
     $this->assertEquals($item->start_x,'340');
@@ -373,11 +329,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertEquals($item->designated,true);
   }
 
-  function testF736487() {
-    $id = "736487";
+  function testF997364873506421() {
+    $id = "997364873506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'736487');
+    $this->assertEquals($item->id,'997364873506421');
     $this->assertEquals($item->location,'C-14-N');
     $this->assertEquals($item->fl,'C');
     $this->assertEquals($item->lc,'f');
@@ -388,8 +344,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
-    $this->assertEquals($item->subject,'Military Science');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_C');
     $this->assertEquals($item->start_x,'330');
@@ -407,12 +361,12 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
   }
 
   // missing copy should go to the non missing location
-  function testF1273320() {
-    $id = "1273320";
+  function testF9912733203506421() {
+    $id = "9912733203506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
 
-    $this->assertEquals($item->id,'1273320');
+    $this->assertEquals($item->id,'9912733203506421');
     $this->assertEquals($item->location,'C-14-N');
     $this->assertEquals($item->fl,'C');
     $this->assertEquals($item->lc,'f');
@@ -423,7 +377,6 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
     $this->assertNull($item->ref);
     $this->assertNull($item->site);
     $this->assertEquals($item->charged,'false');
-    $this->assertEquals($item->status,'<b>Item status:</b> Not Charged');
     $this->assertEquals($item->subject,'Military Science');
     $this->assertNull($item->message);
     $this->assertEquals($item->floorDB,'f_C');
@@ -442,11 +395,11 @@ class ItemProdTest extends \PHPUnit\Framework\TestCase {
   }
 
   // A suppressed item
-  function testF121362() {
-    $id = "121362";
+  function testF991213623506421() {
+    $id = "991213623506421";
     $loc = "f";
     $item = $this->item_proc->get_item("", $loc, $id);
-    $this->assertEquals($item->id,'121362');
+    $this->assertEquals($item->id,'991213623506421');
     $this->assertEquals($item->location,'B-17-N');
     $this->assertEquals($item->fl,'B');
     $this->assertEquals($item->lc,'f');
