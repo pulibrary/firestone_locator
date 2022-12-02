@@ -43,6 +43,18 @@ Tests use phpunit https://phpunit.de/manual/current/en/index.html
 
 1. Run the tests on the lando server by running `lando test`
 
+### To Run a single test
+
+1. Note the name of the file that contains your test, the class that contains your test, and the method that actually contains your assertions.
+1. `lando ssh`
+1. `php phpunit-7.4.phar --filter methodName ClassName tests/FileName.php`
+
+For example, if you want to run the `testLinks` method in the `CompareProdTest` class in the `CompareProdTest.php` file, you would run:
+
+```
+php phpunit-7.4.phar --filter testLinks CompareProdTest tests/CompareProdTest.php
+```
+
 ## Deploy to server
 
 We have capistrano set up to deploy our servers
