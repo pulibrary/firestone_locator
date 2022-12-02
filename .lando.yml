@@ -2,7 +2,7 @@ name: firestone-book-locater
 recipe: lamp
 config:
   webroot: .
-  php: '7.2'
+  php: '7.4'
 services:
   database:
     type: mariadb
@@ -16,4 +16,4 @@ tooling:
   test:
     description: run all our tests 
     cmd:
-      - appserver: php phpunit-7.4.phar tests
+      - appserver: php phpunit-8.phar tests

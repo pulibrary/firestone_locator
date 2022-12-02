@@ -4,7 +4,7 @@ include_once(__DIR__ .'/../includes/db_functions.php');
 class CompareProdTest extends \PHPUnit\Framework\TestCase {
 
 
-  protected function setUp() {
+  protected function setUp(): void {
     $this->link_array = [ 
     'http://firestone-book-locater.lndo.site/index.php?loc=f&id=99101564703506421&embed=true',
     'http://firestone-book-locater.lndo.site/index.php?loc=f&id=9932088913506421&embed=true',
