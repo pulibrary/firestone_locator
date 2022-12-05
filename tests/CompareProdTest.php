@@ -80,7 +80,7 @@ class CompareProdTest extends \PHPUnit\Framework\TestCase {
       $local_data = file_get_contents($url);
       $lc_field_prod =  $this->get_field($prod_data, '"lc"');
       $lc_field_local =  $this->get_field($local_data, '"lc"');
-      $this->assertEquals($lc_field_prod,$lc_field_local);
+      $this->assertEquals($lc_field_prod,$lc_field_local, "Location code matches for $url");
       $location_field_prod =  $this->get_field($prod_data, '"location"');
       $location_field_local =  $this->get_field($local_data, '"location"');
       $fl_field_prod =  $this->get_field($prod_data, '"fl"');
