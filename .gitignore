@@ -42,3 +42,5 @@ images/IllustratorFiles
 images/live
 images/production/f/*
 images/stage/f/*
+
+.phpunit.result.cache

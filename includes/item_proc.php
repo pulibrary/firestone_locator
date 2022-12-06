@@ -447,7 +447,7 @@ echo "scale_y 	$item->scale_y <br>";
 
 // Load other locator links if merged records --------------------------------------------
 function showOtherItems($bib_array, $locations_array, $selected_loc) {
-	if (sizeof($bib_array) > 1) {
+	if ($bib_array && sizeof($bib_array) > 1) {
 		echo "<h2>View this item:</h2>";
 		echo "<ul>\n";
 		mysql_select_db("requests",$tempconn);

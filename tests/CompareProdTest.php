@@ -4,7 +4,7 @@ include_once(__DIR__ .'/../includes/db_functions.php');
 class CompareProdTest extends \PHPUnit\Framework\TestCase {
 
 
-  protected function setUp() {
+  protected function setUp(): void {
     $this->link_array = [ 
     'http://firestone-book-locater.lndo.site/index.php?loc=f&id=99101564703506421&embed=true',
     'http://firestone-book-locater.lndo.site/index.php?loc=f&id=9932088913506421&embed=true',
@@ -80,7 +80,7 @@ class CompareProdTest extends \PHPUnit\Framework\TestCase {
       $local_data = file_get_contents($url);
       $lc_field_prod =  $this->get_field($prod_data, '"lc"');
       $lc_field_local =  $this->get_field($local_data, '"lc"');
-      $this->assertEquals($lc_field_prod,$lc_field_local);
+      $this->assertEquals($lc_field_prod,$lc_field_local, "Location code matches for $url");
       $location_field_prod =  $this->get_field($prod_data, '"location"');
       $location_field_local =  $this->get_field($local_data, '"location"');
       $fl_field_prod =  $this->get_field($prod_data, '"fl"');

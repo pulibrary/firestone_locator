@@ -4,7 +4,7 @@ include_once(__DIR__ .'/../includes/db_functions.php');
 class ItemProdTest extends \PHPUnit\Framework\TestCase {
 
 
-  protected function setUp() {
+  protected function setUp(): void {
     $this->item_proc = new ItemProc();
   }
 
